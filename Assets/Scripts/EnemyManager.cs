@@ -22,7 +22,6 @@ public class EnemyManager : MonoBehaviour
         // checks if the player does not have any health
         if(m_playerHealth.m_currentHealth <= 0.0f)
         {
-            Debug.Log("Spawn");
             // exits the function
             return;
         }

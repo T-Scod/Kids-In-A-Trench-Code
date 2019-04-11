@@ -143,7 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 128
   height: 72
-  seed: Sebastian
+  seed: 
   useRandomSeed: 1
   randomFillPercent: 53
   enemySpawner: {fileID: 1360114330094860, guid: a041b3fb4e8598c498e29d0437bf380d,
@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 381956986}
   - component: {fileID: 381956985}
   m_Layer: 0
-  m_Name: Image (1)
+  m_Name: HP 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -273,7 +273,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1038594121}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -486,7 +486,7 @@ GameObject:
   - component: {fileID: 1038594122}
   m_Layer: 0
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -501,8 +501,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1342828430}
   - {fileID: 381956984}
+  - {fileID: 1342828430}
   - {fileID: 1543898974}
   m_Father: {fileID: 1163951464}
   m_RootOrder: 0
@@ -610,7 +610,7 @@ GameObject:
   - component: {fileID: 1342828432}
   - component: {fileID: 1342828431}
   m_Layer: 0
-  m_Name: Image
+  m_Name: HP 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -627,7 +627,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1038594121}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -710,7 +710,7 @@ GameObject:
   - component: {fileID: 1543898976}
   - component: {fileID: 1543898975}
   m_Layer: 0
-  m_Name: Image (2)
+  m_Name: HP 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

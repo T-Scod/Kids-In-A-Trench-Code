@@ -1,16 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using UnityEngine.SceneManagement;
-
 
 public class PlayerHealth : MonoBehaviour
 {
     // health when the level starts
-    public int m_startingHealth = 100;
+    public int m_startingHealth = 3;
     // current health of the player
     public int m_currentHealth;
 
+    private Image[] m_heartImages;
     // reference to the movement script
     private PlayerMovement m_playerMovement;
     // reference to the shooting script
@@ -27,6 +26,7 @@ public class PlayerHealth : MonoBehaviour
         m_playerShooting = GetComponentInChildren<PlayerShooting>();
         // sets the current health to the starting health
         m_currentHealth = m_startingHealth;
+        m_heartImages = GameObject.FindGameObjectWithTag("Canvas").GetComponentsInChildren<Image>();
     }
 
     // reduces the health by the amount
@@ -34,6 +34,7 @@ public class PlayerHealth : MonoBehaviour
     {
         // decrements the current health by the amount
         m_currentHealth -= amount;
+        m_heartImages[m_currentHealth].color = Color.black;
 
         // checks if the health is less than 0 or the player is dead
         if(m_currentHealth <= 0 && !m_isDead)
