@@ -5,19 +5,22 @@ public class PlayerInput : MonoBehaviour {
 	[HideInInspector] public Vector2 axis;
 	[HideInInspector] public bool shoot;	
 	[HideInInspector] public bool dash;
+    [HideInInspector] public bool sprint;
 
-	[SerializeField] bool invertHorizontal = false;
+    [SerializeField] bool invertHorizontal = false;
 	[SerializeField] bool invertVertical = false;
 	[SerializeField] bool raw = false;
 	[SerializeField] KeyCode shootButton = KeyCode.Mouse0;
 	[SerializeField] KeyCode dashButton = KeyCode.Mouse1;
+    [SerializeField] KeyCode sprintButton = KeyCode.LeftShift;
 
 
-	void Update ()
+    void Update ()
     {
         SetAxes();
         SetShoot();
         SetDash();
+        SetSprint();
     }
 
     private void SetDash()
@@ -41,6 +44,18 @@ public class PlayerInput : MonoBehaviour {
         else
         {
             shoot = false;
+        }
+    }
+
+    private void SetSprint()
+    {
+        if (Input.GetKey(sprintButton))
+        {
+            sprint = true;
+        }
+        else
+        {
+            sprint = false;
         }
     }
 
