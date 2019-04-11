@@ -7,12 +7,11 @@ public class MapGenerator : MonoBehaviour
 {
     public int width;
     public int height;
-
     public string seed;
     public bool useRandomSeed;
-
     [Range(0, 100)]
     public int randomFillPercent;
+    public GameObject enemySpawner;
 
     private int[,] m_map;
 
@@ -61,6 +60,27 @@ public class MapGenerator : MonoBehaviour
 
         MeshGenerator meshGen = GetComponent<MeshGenerator>();
         meshGen.GenerateMesh(borderedMap, 1);
+
+        bool openSpace = false;
+        System.Random pseudoRandomX = new System.Random(seed.GetHashCode());
+        System.Random pseudoRandomY = new System.Random(seed.GetHashCode());
+
+        for (int i = 0; i < 3; i++)
+        {
+            openSpace = false;
+            while (!openSpace)
+            {
+                int x = pseudoRandomX.Next(0, width);
+                int y = pseudoRandomY.Next(0, height);
+                if (borderedMap[x, y] == 0)
+                {
+                    openSpace = true;
+                    Vector3 position = CoordToWorldPoint(new Coord(x, y));
+                    position.y = -4.3f;
+                    Instantiate(enemySpawner, position, Quaternion.identity);
+                }
+            }
+        }
     }
 
     private void ProcessMap()
