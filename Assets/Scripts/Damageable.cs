@@ -1,35 +1,87 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public abstract class Damageable {
-	[SerializeField] float HP;
-	[SerializeField] AudioClip hitSound;
+public abstract class Damageable : MonoBehaviour
+{
+    [SerializeField] int maxHP;
+    [SerializeField] float invulnerabiltyTime = 2f;
+    [SerializeField] Animator anim;
+    [SerializeField] new AudioSource audio;
+    [SerializeField] List<AudioClip> hitSounds;
+    [SerializeField] UnityEvent OnDeath, OnReceiveDamage, OnHitWhileInvulnerable, OnBecomeInvulnerable, OnResetDamage;
 
-	public virtual void TakeDamage(int damage)
-	{
-		HP -= damage;
-		PlayHitSound();
-		
-		if (HP <= 0)
-		{
-			Death();
-		}
-	}
 
-    private void PlayHitSound()
+    public bool isInvulnerable { get; set; }
+    public int currentHP { get; private set; }
+    public bool isDead { get { return currentHP <= 0; } }
+
+
+    protected float m_timeSinceLastHit;
+    protected Collider m_collider;
+
+
+    void Start()
     {
-        throw new NotImplementedException();
+        ResetDamage();
+        m_collider = GetComponent<Collider>();
+    }
+
+    void Update()
+    {
+        if (isInvulnerable)
+        {
+            m_timeSinceLastHit += Time.deltaTime;
+            if (m_timeSinceLastHit > invulnerabiltyTime)
+            {
+                m_timeSinceLastHit = 0f;
+                isInvulnerable = false;
+                OnBecomeInvulnerable.Invoke();
+            }
+        }
+    }
+
+    private void ResetDamage()
+    {
+        currentHP = maxHP;
+        isInvulnerable = false;
+        m_timeSinceLastHit = 0f;
+        OnResetDamage.Invoke();
+    }
+
+    public void TakeDamage(int damageAmount)
+    {
+        //Ignore damage if already dead
+        if (isDead) return;
+
+        if (isInvulnerable)
+        {
+            OnHitWhileInvulnerable.Invoke();
+            return;
+        }
+
+        //Finally take damage
+        currentHP -= damageAmount;
+
+        if (currentHP <= 0)
+        {
+            OnDeath.Invoke();
+            Death();
+        }
+        else
+        {
+            OnReceiveDamage.Invoke();
+        }
+    }
+
+    public void Hit()
+    {
+        var randomSound = hitSounds[UnityEngine.Random.Range(0, hitSounds.Count)];
+        audio.PlayOneShot(randomSound);
+        anim.SetTrigger("TakeDamage");
     }
 
     public abstract void Death();
-
-
-
-
-    [SerializeField] float startingHealth;
-	[SerializeField] bool invulnerableAfterDamage;
-	[SerializeField] float invulnerabilityDuration;
-
-
 
 }
