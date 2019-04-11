@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEngine.AI;
 
 public class MapGenerator : MonoBehaviour
 {
@@ -87,6 +88,8 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
+
+        GetComponent<NavMeshSurface>().BuildNavMesh();
     }
 
     private void ProcessMap()

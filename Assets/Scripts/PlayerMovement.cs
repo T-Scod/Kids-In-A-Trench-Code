@@ -10,13 +10,14 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 m_movement;
     // player rigidbody
     private Rigidbody m_playerRb;
-    // length of the camera ray
-    private float m_camRayLength = 100.0f;
+    private Quaternion m_cameraRotation;
 
-    public GameObject m_crosshair;
+    private GameObject m_crosshair;
     private void Awake()
     {
         m_playerRb = GetComponent<Rigidbody>();
+        m_crosshair = GameObject.FindGameObjectWithTag("Crosshair");
+        m_cameraRotation = GetComponentInChildren<Camera>().gameObject.transform.localRotation;
     }
 
     private void FixedUpdate()
@@ -29,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
 
         // moves, turns and animates the player
         Move(moveHorizontal, moveVertical);
+
+        GetComponentInChildren<Camera>().gameObject.transform.rotation = m_cameraRotation;
     }
 
     // moves the player
