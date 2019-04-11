@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Crosshair : MonoBehaviour {
 
+    [SerializeField] float distanceFromFloor = 2f;
     void Start()
     {
         Cursor.visible = false;
@@ -16,7 +15,7 @@ public class Crosshair : MonoBehaviour {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
-            transform.position = new Vector3(hit.point.x, 3, hit.point.z);
+            transform.position = new Vector3(hit.point.x, distanceFromFloor, hit.point.z);
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))

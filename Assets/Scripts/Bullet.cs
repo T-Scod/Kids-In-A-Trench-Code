@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Projectile : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
 	private Rigidbody rb;
 	[SerializeField] float mass = 0.5f;

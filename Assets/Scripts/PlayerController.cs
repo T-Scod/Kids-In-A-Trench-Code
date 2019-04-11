@@ -1,37 +1,47 @@
-﻿// using UnityEngine;
+﻿using UnityEngine;
 
-// [RequireComponent(typeof(PlayerInput))]
-// [RequireComponent(typeof(PlayerShoot))]
-// [RequireComponent(typeof(CharacterController))]
-// public class PlayerController : MonoBehaviour {
-// 	[SerializeField] float moveSpeed = 0.3f;
+public class PlayerController : MonoBehaviour
+{
+    public float m_speed = 6.0f;
+    //movement speed multiplier
+    private float m_speedModifier;
+    // movement direction
+    private Vector3 m_movement;
+    // player rigidbody
+    private Rigidbody m_playerRb;
+    // private Quaternion m_cameraRotation;
 
-// 	CharacterController charController;
-// 	PlayerInput input;
-// 	PlayerShoot shooter;
-// 	Camera camera;
+    private GameObject m_crosshair;
 
-// 	void Start()
-// 	{
-// 		charController = GetComponent<CharacterController>();
-// 		input = GetComponent<PlayerInput>();
-// 		shooter = GetComponent<PlayerShoot>();
-// 		camera = Camera.main;
-// 	}
+    private void Start()
+    {
+        m_playerRb = GetComponent<Rigidbody>();
+        m_crosshair = FindObjectOfType<Crosshair>().gameObject;
+        // m_cameraRotation = GetComponentInChildren<Camera>().gameObject.transform.localRotation;
+    }
 
-// 	void Update()
-// 	{
-// 		// var axisInput = playerInput.axis;
-// 		var xAxis = input.axis.x;
-// 		var zAxis = input.axis.y;
+    private void FixedUpdate()
+    {
+        transform.LookAt(new Vector3(m_crosshair.transform.position.x, transform.position.y, m_crosshair.transform.position.z));
+        // gets the horizontal movement value
+        float moveHorizontal = Input.GetAxisRaw("Horizontal");
+        // gets the vertical movement value
+        float moveVertical = Input.GetAxisRaw("Vertical");
 
-// 		charController.Move(new Vector3(xAxis, 0, zAxis).normalized * moveSpeed);
+        // moves, turns and animates the player
+        Move(moveHorizontal, moveVertical);
 
-// 		if (input.isShooting)
-// 		{
-// 			shooter.Fire(transform);
-// 		}
-// 	}
+        // GetComponentInChildren<Camera>().gameObject.transform.rotation = m_cameraRotation;
+    }
 
-
-// }
+    // moves the player
+    private void Move(float h, float v)
+    {
+        // sets the movement direction to the horizontal and vertical components
+        m_movement.Set(h, 0.0f, v);
+        // converts the movement vector to real time movement
+        m_movement = m_movement.normalized * m_speed * Time.deltaTime;
+        // moves the rigidbody to the current position plus the movement
+        m_playerRb.MovePosition(transform.position + m_movement);
+    }
+}

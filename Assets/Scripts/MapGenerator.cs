@@ -15,6 +15,8 @@ public class MapGenerator : MonoBehaviour
     public GameObject enemySpawner;
     public GameObject playerPrefab;
 
+    [HideInInspector] public GameObject playerReference;    //This is so that other objects can reference the main player upon instantiation
+
     private int[,] m_map;
 
     private void Start()
@@ -68,7 +70,7 @@ public class MapGenerator : MonoBehaviour
                 openSpace = true;
                 Vector3 position = CoordToWorldPoint(new Coord(x, y));
                 position.y = -4.3f;
-                Instantiate(playerPrefab, position, Quaternion.identity);
+                playerReference = Instantiate(playerPrefab, position, Quaternion.identity) as GameObject;
             }
         }
 

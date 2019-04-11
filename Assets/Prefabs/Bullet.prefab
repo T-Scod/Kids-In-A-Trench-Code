@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 54046850085584888}
   - component: {fileID: 114500022847852186}
   m_Layer: 0
-  m_Name: Projectile
+  m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,12 +109,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1673101627250148}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bee5a9311b2ff0944b174198989b3661, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c7d6cf5a9bd2473e9e63303b5fcf1c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mass: 0.5
   affectedByGravity: 0
-  lifeTime: 1
+  lifeTime: 3
 --- !u!135 &135201534455910644
 SphereCollider:
   m_ObjectHideFlags: 1

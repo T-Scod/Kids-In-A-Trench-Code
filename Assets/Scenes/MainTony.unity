@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -146,9 +146,9 @@ MonoBehaviour:
   seed: Sebastian
   useRandomSeed: 1
   randomFillPercent: 53
-  enemySpawner: {fileID: 1360114330094860, guid: a041b3fb4e8598c498e29d0437bf380d,
+  enemySpawner: {fileID: 1360114330094860, guid: 7818818ef3f1d1741897d9221e5147bf,
     type: 2}
-  playerPrefab: {fileID: 1229067400959284, guid: 2c547add81ce7c64ab0a784deedb7f7f,
+  playerPrefab: {fileID: 1359528177434078, guid: 272aee92b5d18de47be17909ecc3efef,
     type: 2}
 --- !u!4 &122943259
 Transform:
@@ -484,9 +484,10 @@ GameObject:
   - component: {fileID: 1038594124}
   - component: {fileID: 1038594123}
   - component: {fileID: 1038594122}
+  - component: {fileID: 1038594125}
   m_Layer: 0
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -569,6 +570,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1038594125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1038594120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82e75db8308af4696811a3a69b5d276f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfHearts: 3
 --- !u!1 &1163951463
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,68 +612,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1227512034
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4556106690777360, guid: 57498290cc1bdb34abbe098adfff4b62, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 1.0240222
-      objectReference: {fileID: 0}
-    - target: {fileID: 4556106690777360, guid: 57498290cc1bdb34abbe098adfff4b62, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 161.61502
-      objectReference: {fileID: 0}
-    - target: {fileID: 4556106690777360, guid: 57498290cc1bdb34abbe098adfff4b62, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -61.14257
-      objectReference: {fileID: 0}
-    - target: {fileID: 4556106690777360, guid: 57498290cc1bdb34abbe098adfff4b62, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0.6002008
-      objectReference: {fileID: 0}
-    - target: {fileID: 4556106690777360, guid: 57498290cc1bdb34abbe098adfff4b62, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0.010076258
-      objectReference: {fileID: 0}
-    - target: {fileID: 4556106690777360, guid: 57498290cc1bdb34abbe098adfff4b62, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0.0075617777
-      objectReference: {fileID: 0}
-    - target: {fileID: 4556106690777360, guid: 57498290cc1bdb34abbe098adfff4b62, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: -0.7997502
-      objectReference: {fileID: 0}
-    - target: {fileID: 4556106690777360, guid: 57498290cc1bdb34abbe098adfff4b62, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114413469853318950, guid: 57498290cc1bdb34abbe098adfff4b62,
-        type: 2}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114413469853318950, guid: 57498290cc1bdb34abbe098adfff4b62,
-        type: 2}
-      propertyPath: offset.y
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 114413469853318950, guid: 57498290cc1bdb34abbe098adfff4b62,
-        type: 2}
-      propertyPath: offset.z
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114413469853318950, guid: 57498290cc1bdb34abbe098adfff4b62,
-        type: 2}
-      propertyPath: lerp
-      value: 0.05
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 57498290cc1bdb34abbe098adfff4b62, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &1342828429
 GameObject:
   m_ObjectHideFlags: 0

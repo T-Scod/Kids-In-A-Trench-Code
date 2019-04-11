@@ -1,60 +1,58 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
-    private Rigidbody rigidbody;
-    private Vector3 velocity;
-    public float m_speed;
-    private float m_speedModifier;
+    // health when the level starts
+    public int m_startingHealth = 3;
+    // current health of the player
+    public int m_currentHealth;
 
-    private float dashTime;
+    private Image[] m_heartImages;
+    // reference to the movement script
+    private PlayerController m_playerMovement;
+    // reference to the shooting script
+    private PlayerShooting m_playerShooting;
+    // determines if the player is dead
+    private bool m_isDead;
+    // determines if the player is damaged
+    private bool m_damaged;
 
-
-    private void Start()
+    private void Awake()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        // gets the components from the object
+        m_playerMovement = GetComponent<PlayerController>();
+        m_playerShooting = GetComponentInChildren<PlayerShooting>();
+        // sets the current health to the starting health
+        m_currentHealth = m_startingHealth;
+        m_heartImages = FindObjectOfType<PlayerHealthBar>().GetComponentsInChildren<Image>();
     }
 
-    void Update()
+    // reduces the health by the amount
+    public void TakeDamage(int amount)
     {
-        if (GetComponent<PlayerInput>().sprint == true)
+        // decrements the current health by the amount
+        m_currentHealth -= amount;
+        m_heartImages[m_currentHealth].color = Color.black;
+
+        // checks if the health is less than 0 or the player is dead
+        if(m_currentHealth <= 0 && !m_isDead)
         {
-            m_speedModifier = 2f;
+            // sets the player to death
+            Death();
         }
-        else
-        {
-            m_speedModifier = 1f;
-        }
-
-        velocity = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical")).normalized * m_speed * m_speedModifier;
-
-        if (GetComponent<PlayerInput>().shoot == true)
-            Shoot();
-        if (GetComponent<PlayerInput>().dash == true && dashTime == 0)
-            Dash();
     }
 
-    private void FixedUpdate()
+    // sets the player to dead
+    void Death()
     {
-        rigidbody.MovePosition(rigidbody.position + velocity * Time.fixedDeltaTime);
-    }
+        // sets the dead status to true
+        m_isDead = true;
 
-    void Dash()
-    {
-        float dashTime = 5;
-        if (dashTime > 0)
-        {
-            m_speedModifier = 40f;
-            dashTime--;
-        }
-        if (dashTime == 0)
-            m_speedModifier = 1;
-    }
-
-    void Shoot()
-    {
-
+        // disables player movement
+        m_playerMovement.enabled = false;
+        // disables player shooting
+        m_playerShooting.enabled = false;
     }
 }
