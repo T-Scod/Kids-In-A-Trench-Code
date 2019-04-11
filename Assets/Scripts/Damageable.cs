@@ -89,6 +89,6 @@ public abstract class Damageable : MonoBehaviour
         audio.PlayOneShot(randomSound);
     }
 
-    public abstract void Death();
+    public virtual void Death();
 
 }
