@@ -56,10 +56,11 @@ GameObject:
   - component: {fileID: 23358835561308828}
   - component: {fileID: 136285671080225418}
   - component: {fileID: 54991586435116706}
-  - component: {fileID: 114465830377740496}
-  - component: {fileID: 114256357724867760}
-  - component: {fileID: 114712675276753392}
   - component: {fileID: 195005524720007904}
+  - component: {fileID: 114488284476597884}
+  - component: {fileID: 114200279326059610}
+  - component: {fileID: 114954332031327298}
+  - component: {fileID: 114511886845390498}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -293,7 +294,41 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114256357724867760
+--- !u!114 &114200279326059610
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1359528177434078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72b16ed3e171a584f90760c7afb11bec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axis: {x: 0, y: 0}
+  isShooting: 0
+  isDashing: 0
+  isSprinting: 0
+  invertHorizontal: 0
+  invertVertical: 0
+  raw: 1
+  shootButton: 323
+  dashButton: 324
+  sprintButton: 304
+--- !u!114 &114488284476597884
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1359528177434078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7301535641ddd3241846c0b9122b6148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_startingHealth: 3
+  m_currentHealth: 0
+--- !u!114 &114511886845390498
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -307,25 +342,12 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1673101627250148, guid: a6c2322bf34d3a4438483231f015019d,
     type: 2}
   muzzle: {fileID: 4042333866315412}
-  launchForce: 1000
+  launchForce: 500
   launchForceMode: 1
-  bulletLifetime: 3
-  damagePerShot: 20
+  damagePerShot: 1
   timeBetweenShots: 0.15
---- !u!114 &114465830377740496
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1359528177434078}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 544f2064df03e95419b4a5147c506b08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_startingHealth: 3
-  m_currentHealth: 3
---- !u!114 &114712675276753392
+  bulletLifetime: 3
+--- !u!114 &114954332031327298
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -333,10 +355,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1359528177434078}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ec45203ae7a1a54c9d02c355f983833, type: 3}
+  m_Script: {fileID: 11500000, guid: 96e95605909616947842e18ee20abfd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_speed: 12
+  speed: 12
+  movement: {x: 0, y: 0, z: 0}
 --- !u!136 &136285671080225418
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -369,7 +392,7 @@ NavMeshAgent:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1359528177434078}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5

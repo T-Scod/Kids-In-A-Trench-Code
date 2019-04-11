@@ -6,9 +6,9 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] Transform muzzle;
     [SerializeField] float launchForce = 500;
     [SerializeField] ForceMode launchForceMode = ForceMode.Impulse;
-    [SerializeField] float bulletLifetime = 3f;
     [SerializeField] float damagePerShot = 20;
     [SerializeField] float timeBetweenShots = 0.15f;
+    [SerializeField] float bulletLifetime = 3f;
     float timer;
 
     private void Update()

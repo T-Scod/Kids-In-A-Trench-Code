@@ -11,7 +11,7 @@ public class EnemyAttack : MonoBehaviour
     // reference to the player
     private GameObject m_player;
     // reference to the player health script
-    private PlayerHealth m_playerHealth;
+    private Player m_playerHealth;
     // reference to the enemy health script
     private EnemyHealth m_enemyHealth;
     // determines if the player is close enough to attack
@@ -24,7 +24,7 @@ public class EnemyAttack : MonoBehaviour
         // finds the player
         m_player = GameObject.FindGameObjectWithTag("Player");
         // gets the components from the object
-        m_playerHealth = m_player.GetComponent<PlayerHealth>();
+        m_playerHealth = m_player.GetComponent<Player>();
         m_enemyHealth = GetComponent<EnemyHealth>();
     }
 

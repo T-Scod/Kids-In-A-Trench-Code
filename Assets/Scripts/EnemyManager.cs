@@ -7,11 +7,11 @@ public class EnemyManager : MonoBehaviour
     // the wait time between spawning
     public float m_spawnTime = 3.0f;
     // reference to the player's health
-    private PlayerHealth m_playerHealth;
+    private Player m_playerHealth;
 
     private void Start()
     {
-        m_playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+        m_playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         // repeats the spawn function with a wait time
         InvokeRepeating("Spawn", m_spawnTime, m_spawnTime);
     }

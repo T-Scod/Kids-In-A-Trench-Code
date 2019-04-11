@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class GameOverManager : MonoBehaviour
 {
     // reference to the player's health
-    public PlayerHealth m_playerHealth;
+    public Player m_playerHealth;
     // how long it takes once the player dies for the game to restart
     public float m_restartDelay = 5.0f;
 

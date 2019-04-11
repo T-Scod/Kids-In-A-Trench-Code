@@ -3,9 +3,9 @@
 public class PlayerInput : MonoBehaviour {
 
 	[HideInInspector] public Vector2 axis;
-	[HideInInspector] public bool shoot;	
-	[HideInInspector] public bool dash;
-    [HideInInspector] public bool sprint;
+	[HideInInspector] public bool isShooting;	
+	[HideInInspector] public bool isDashing;
+    [HideInInspector] public bool isSprinting;
 
     [SerializeField] bool invertHorizontal = false;
 	[SerializeField] bool invertVertical = false;
@@ -27,11 +27,11 @@ public class PlayerInput : MonoBehaviour {
     {
         if (Input.GetKeyDown(dashButton))
         {
-            dash = true;
+            isDashing = true;
         }
         else
         {
-            dash = false;
+            isDashing = false;
         }
     }
 
@@ -39,11 +39,11 @@ public class PlayerInput : MonoBehaviour {
     {
         if (Input.GetKeyDown(shootButton))
         {
-            shoot = true;
+            isShooting = true;
         }
         else
         {
-            shoot = false;
+            isShooting = false;
         }
     }
 
@@ -51,11 +51,11 @@ public class PlayerInput : MonoBehaviour {
     {
         if (Input.GetKey(sprintButton))
         {
-            sprint = true;
+            isSprinting = true;
         }
         else
         {
-            sprint = false;
+            isSprinting = false;
         }
     }
 

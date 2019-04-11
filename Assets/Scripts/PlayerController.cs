@@ -1,47 +1,61 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float m_speed = 6.0f;
-    //movement speed multiplier
-    private float m_speedModifier;
-    // movement direction
-    private Vector3 m_movement;
-    // player rigidbody
-    private Rigidbody m_playerRb;
-    // private Quaternion m_cameraRotation;
+    [SerializeField] float speed = 1f;
 
-    private GameObject m_crosshair;
+    PlayerInput input;
+    PlayerShooting shooter;
+    CharacterController cc;
+    Transform crossHair;
+    Rigidbody rb;
+
+    [HideInInspector] public Vector3 movement;  //Can be accessed through script if needed
 
     private void Start()
     {
-        m_playerRb = GetComponent<Rigidbody>();
-        m_crosshair = FindObjectOfType<Crosshair>().gameObject;
-        // m_cameraRotation = GetComponentInChildren<Camera>().gameObject.transform.localRotation;
+        cc = GetComponent<CharacterController>();
+        input = GetComponent<PlayerInput>();
+        shooter = GetComponent<PlayerShooting>();
+        crossHair = FindObjectOfType<Crosshair>().transform;
+        rb = GetComponent<Rigidbody>();
     }
 
-    private void FixedUpdate()
+    void Update()
     {
-        transform.LookAt(new Vector3(m_crosshair.transform.position.x, transform.position.y, m_crosshair.transform.position.z));
-        // gets the horizontal movement value
-        float moveHorizontal = Input.GetAxisRaw("Horizontal");
-        // gets the vertical movement value
-        float moveVertical = Input.GetAxisRaw("Vertical");
-
-        // moves, turns and animates the player
-        Move(moveHorizontal, moveVertical);
-
-        // GetComponentInChildren<Camera>().gameObject.transform.rotation = m_cameraRotation;
+        ControlLook();
+        ControlMovement();
+        ControlShooting();
     }
 
-    // moves the player
-    private void Move(float h, float v)
+    void FixedUpdate()
     {
-        // sets the movement direction to the horizontal and vertical components
-        m_movement.Set(h, 0.0f, v);
-        // converts the movement vector to real time movement
-        m_movement = m_movement.normalized * m_speed * Time.deltaTime;
-        // moves the rigidbody to the current position plus the movement
-        m_playerRb.MovePosition(transform.position + m_movement);
+        DoMovement();
+    }
+
+    void ControlLook()
+    {
+        transform.LookAt(new Vector3(crossHair.position.x, transform.position.y, crossHair.position.z));
+    } 
+
+    void ControlShooting()
+    {
+        if (input.isShooting)
+        {
+            shooter.Shoot();
+        }
+    }
+
+    void ControlMovement()
+    {
+        var xMotion = input.axis.x * speed * Time.deltaTime;
+        var zMotion = input.axis.y * speed * Time.deltaTime;
+        movement.Set(xMotion, 0, zMotion);
+    }
+
+    void DoMovement()
+    {
+        rb.MovePosition(transform.position + movement);
     }
 }
