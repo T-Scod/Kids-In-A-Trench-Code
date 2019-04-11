@@ -4,6 +4,8 @@ public class PlayerMovement : MonoBehaviour
 {
     // movement speed
     public float m_speed = 6.0f;
+    //movement speed multiplier
+    private float m_speedModifier;
     // movement direction
     private Vector3 m_movement;
     // player rigidbody
@@ -18,6 +20,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (Input.GetKey(KeyCode.LeftShift))
+            m_speedModifier = 2f;
+        else
+            m_speedModifier = 1f; 
         // gets the horizontal movement value
         float moveHorizontal = Input.GetAxisRaw("Horizontal");
         // gets the vertical movement value
@@ -35,6 +41,6 @@ public class PlayerMovement : MonoBehaviour
         // converts the movement vector to real time movement
         m_movement = m_movement.normalized * m_speed * Time.deltaTime;
         // moves the rigidbody to the current position plus the movement
-        m_playerRb.MovePosition(transform.position + m_movement);
+        m_playerRb.MovePosition(transform.position + m_movement * m_speedModifier);
     }
 }

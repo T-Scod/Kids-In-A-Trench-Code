@@ -4,9 +4,9 @@ using System.Collections;
 public class EnemyAttack : MonoBehaviour
 {
     // the wait time between attacks
-    public float m_timeBetweenAttacks = 0.5f;
+    public float m_timeBetweenAttacks = 1.0f;
     // damage value of the attack
-    public int m_attackDamage = 10;
+    public int m_attackDamage = 1;
 
     // reference to the player
     private GameObject m_player;
