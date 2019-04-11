@@ -11,7 +11,7 @@ public class EnemyManager : MonoBehaviour
 
     private void Start()
     {
-        m_playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+        m_playerHealth = FindObjectOfType<PlayerHealth>();
         // repeats the spawn function with a wait time
         InvokeRepeating("Spawn", m_spawnTime, m_spawnTime);
     }
