@@ -64,12 +64,12 @@ public class PlayerInput : MonoBehaviour {
         if (raw)
         {
             axis.x = invertHorizontal ? -Input.GetAxisRaw("Horizontal") : Input.GetAxisRaw("Horizontal");
-            axis.x = invertHorizontal ? -Input.GetAxisRaw("Vertical") : Input.GetAxisRaw("Vertical");
+            axis.y = invertVertical ? -Input.GetAxisRaw("Vertical") : Input.GetAxisRaw("Vertical");
         }
         else
         {
             axis.x = invertHorizontal ? -Input.GetAxis("Horizontal") : Input.GetAxis("Horizontal");
-            axis.x = invertHorizontal ? -Input.GetAxis("Vertical") : Input.GetAxis("Vertical");
+            axis.y = invertVertical ? -Input.GetAxis("Vertical") : Input.GetAxis("Vertical");
         }
     }
 }
