@@ -27,11 +27,11 @@ public class PlayerInput : MonoBehaviour {
     {
         if (Input.GetKeyDown(dashButton))
         {
-            dash = true;
+            isDashing = true;
         }
         else
         {
-            dash = false;
+            isDashing = false;
         }
     }
 
@@ -39,11 +39,11 @@ public class PlayerInput : MonoBehaviour {
     {
         if (Input.GetKeyDown(shootButton))
         {
-            shoot = true;
+            isShooting = true;
         }
         else
         {
-            shoot = false;
+            isShooting = false;
         }
     }
 
