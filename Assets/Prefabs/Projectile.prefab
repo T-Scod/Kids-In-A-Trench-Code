@@ -113,7 +113,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mass: 0.5
-  affectedByGravity: 1
+  affectedByGravity: 0
+  lifeTime: 1
 --- !u!135 &135201534455910644
 SphereCollider:
   m_ObjectHideFlags: 1
