@@ -15,8 +15,6 @@ public class EnemyHealth : MonoBehaviour
     private CapsuleCollider m_capsuleCollider;
     // determines if the enemy is dead
     private bool m_isDead;
-    // determines if the enemy should be sinking
-    private bool m_isSinking;
 
     private void Awake()
     {
@@ -30,7 +28,7 @@ public class EnemyHealth : MonoBehaviour
     private void Update()
     {
         // checks if the enemy should be sinking
-        if(m_isSinking)
+        if(m_isDead)
         {
             // translates the enemy down
             transform.Translate(-Vector3.up * m_sinkSpeed * Time.deltaTime);
@@ -65,6 +63,7 @@ public class EnemyHealth : MonoBehaviour
         m_isDead = true;
         // triggers the capsule collider
         m_capsuleCollider.isTrigger = true;
+        StartSinking();
     }
 
     // makes the enemy sink
@@ -75,7 +74,6 @@ public class EnemyHealth : MonoBehaviour
         // sets the rigidbody to kinematic so that it ignores the geometry
         GetComponent<Rigidbody>().isKinematic = true;
         // sets the sinking flag to true
-        m_isSinking = true;
         // increments the score
         ScoreManager.m_score += m_scoreValue;
         // destroys the object after 2 seconds

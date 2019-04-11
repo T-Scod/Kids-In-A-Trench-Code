@@ -29,6 +29,7 @@ public class EnemyMovement : MonoBehaviour
         {
             // moves the object towards the player
             m_nav.SetDestination(m_player.position);
+            m_nav.speed += Time.deltaTime;
         }
         else
         {
