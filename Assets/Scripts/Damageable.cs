@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public abstract class Damageable : MonoBehaviour
 {
-    [SerializeField] int maxHP;
+    [SerializeField] int maxHP = 1;
     [SerializeField] float invulnerabiltyTime = 2f;
     [Header("Animations")]
     [SerializeField] Animator anim;
