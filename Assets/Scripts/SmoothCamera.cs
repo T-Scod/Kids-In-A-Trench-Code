@@ -16,10 +16,9 @@ public class SmoothCamera : MonoBehaviour
 	{
 		if (!playerFound) {
 			//Search for player until something is found
-			player = FindObjectOfType<Player>().gameObject;	//Player will always have a PlayerHealth component
+			player = FindObjectOfType<PlayerHealth>().gameObject;	//Player will always have a PlayerHealth component
 			if (player != null)
 			{
-				Debug.Log("Player Found!");
 				playerFound = true;	//Player has been found, stop searching and start tracking
 				StartCoroutine(Reorient()); 	//Do initial orientation
 			}

@@ -3,11 +3,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float speed = 1f;
+    [SerializeField] float speed = 12f;
 
     PlayerInput input;
     PlayerShooting shooter;
-    CharacterController cc;
     Transform crossHair;
     Rigidbody rb;
 
@@ -15,7 +14,6 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        cc = GetComponent<CharacterController>();
         input = GetComponent<PlayerInput>();
         shooter = GetComponent<PlayerShooting>();
         crossHair = FindObjectOfType<Crosshair>().transform;

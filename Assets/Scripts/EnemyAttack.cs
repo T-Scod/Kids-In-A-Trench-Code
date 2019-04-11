@@ -11,7 +11,7 @@ public class EnemyAttack : MonoBehaviour
     // reference to the player
     private GameObject m_player;
     // reference to the player health script
-    private Player m_playerHealth;
+    private PlayerHealth m_playerHealth;
     // reference to the enemy health script
     private EnemyHealth m_enemyHealth;
     // determines if the player is close enough to attack
@@ -24,7 +24,7 @@ public class EnemyAttack : MonoBehaviour
         // finds the player
         m_player = GameObject.FindGameObjectWithTag("Player");
         // gets the components from the object
-        m_playerHealth = m_player.GetComponent<Player>();
+        m_playerHealth = m_player.GetComponent<PlayerHealth>();
         m_enemyHealth = GetComponent<EnemyHealth>();
     }
 
@@ -54,7 +54,7 @@ public class EnemyAttack : MonoBehaviour
         m_timer += Time.deltaTime;
 
         // checks if the timer is greater than the time between attacks and the player is close enough
-        if(m_timer >= m_timeBetweenAttacks && m_playerInRange && m_enemyHealth.m_currentHealth > 0)
+        if(m_timer >= m_timeBetweenAttacks && m_playerInRange && m_enemyHealth.currentHP > 0)
         {
             // attacks the player
             Attack();
@@ -66,7 +66,7 @@ public class EnemyAttack : MonoBehaviour
         // resets the timer
         m_timer = 0.0f;
         // checks if the player health is greater than 0
-        if(m_playerHealth.m_currentHealth > 0)
+        if(m_playerHealth.currentHP > 0)
         {
             // decrements the player health
             m_playerHealth.TakeDamage(m_attackDamage);

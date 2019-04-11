@@ -7,7 +7,9 @@ public abstract class Damageable : MonoBehaviour
 {
     [SerializeField] int maxHP;
     [SerializeField] float invulnerabiltyTime = 2f;
+    [Header("Animations")]
     [SerializeField] Animator anim;
+    [Header("Audio")]
     [SerializeField] new AudioSource audio;
     [SerializeField] List<AudioClip> hitSounds;
     [SerializeField] UnityEvent OnDeath, OnReceiveDamage, OnHitWhileInvulnerable, OnBecomeInvulnerable, OnResetDamage;
@@ -42,7 +44,7 @@ public abstract class Damageable : MonoBehaviour
         }
     }
 
-    private void ResetDamage()
+    public void ResetDamage()
     {
         currentHP = maxHP;
         isInvulnerable = false;
@@ -77,9 +79,14 @@ public abstract class Damageable : MonoBehaviour
 
     public void Hit()
     {
+        PlayRandomSound();
+        anim.SetTrigger("TakeDamage");
+    }
+
+    private void PlayRandomSound()
+    {
         var randomSound = hitSounds[UnityEngine.Random.Range(0, hitSounds.Count)];
         audio.PlayOneShot(randomSound);
-        anim.SetTrigger("TakeDamage");
     }
 
     public abstract void Death();

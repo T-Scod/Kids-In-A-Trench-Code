@@ -1,67 +1,30 @@
 ﻿using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : Damageable
 {
-    // health when the level starts
-    public int m_startingHealth = 100;
-    // current health of the enemy
-    public int m_currentHealth;
-    // speed of the dead enemies' movement through the floor
-    public float m_sinkSpeed = 2.5f;
-    // score amount for killing an enemy
-    public int m_scoreValue = 10;
+    [SerializeField] float m_sinkSpeed = 2.5f;
+    [SerializeField] int m_scoreValue = 10;
 
-    // reference to the enemy capsule collider
-    private CapsuleCollider m_capsuleCollider;
-    // determines if the enemy is dead
-    private bool m_isDead;
+    CapsuleCollider m_capsuleCollider;
 
     private void Awake()
     {
-        // gets the components from the enemy
         m_capsuleCollider = GetComponent<CapsuleCollider>();
-
-        // sets the current health to the starting health
-        m_currentHealth = m_startingHealth;
     }
 
     private void Update()
     {
         // checks if the enemy should be sinking
-        if(m_isDead)
+        if(isDead)
         {
             // translates the enemy down
             transform.Translate(-Vector3.up * m_sinkSpeed * Time.deltaTime);
         }
     }
 
-    // decrements the enemy health and creates a hit particle on the hit point
-    public void TakeDamage(int amount, Vector3 hitPoint)
+    public override void Death()
     {
-        // checks if the enemy is dead
-        if(m_isDead)
-        {
-            // exits the function
-            return;
-        }
-
-        // decrements the enemy health
-        m_currentHealth -= amount;
-
-        // if the enemy health is less than or equal to 0
-        if(m_currentHealth <= 0)
-        {
-            // sets the enemy to dead
-            Death();
-        }
-    }
-
-    // sets the enemy to dead
-    private void Death()
-    {
-        // sets the dead flag to true
-        m_isDead = true;
-        // triggers the capsule collider
+        // triggers the capsule collider (because if you disable it, it won't collide with anything and gravity would just take over?)
         m_capsuleCollider.isTrigger = true;
         StartSinking();
     }

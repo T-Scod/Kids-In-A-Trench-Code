@@ -1,36 +1,64 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Collider))]
 public class Bullet : MonoBehaviour
 {
-	private Rigidbody rb;
+	[SerializeField] int damage = 1;
 	[SerializeField] float mass = 0.5f;
 	[SerializeField] bool affectedByGravity = true;
-	[SerializeField] float lifeTime = 3f;
-	float startTime = 0.0f;
+	[Header("Audio")]
+	[SerializeField] new AudioSource audio;
+	[SerializeField] List<AudioClip> hitSounds;
+	[Header("Particles")]
+	[SerializeField] ParticleSystem particles;
 
+	protected GameObject m_owner;
+
+	Rigidbody rb;
 
 	void Awake()
 	{
-		//Cache rb
 		rb = GetComponent<Rigidbody>();
-
-		//Set projectile properties
-		rb.useGravity = affectedByGravity;
 		rb.mass = mass;
-
+		rb.useGravity = affectedByGravity;
 	}
 
-	void OnEnable()
+	public void SetOwner(GameObject owner)
 	{
-		Destroy(this, lifeTime);
+		m_owner = owner;
 	}
 
-	public void Launch(Transform origin, float force, ForceMode forceMode)
+	void OnTriggerEnter(Collider other)
 	{
-		var shootOrigin = origin.position;
-		var shootDirection = origin.forward;
+		//Retrive damageable
+		Damageable dam = other.GetComponent<Damageable>();
 
-		rb.AddForce(origin.forward, forceMode);
+		//Exit if nothing hit
+		if (dam == null) return;
+
+		//Prevent self harm
+		if (dam.gameObject == m_owner) return;
+
+		//Do the damage!
+		dam.TakeDamage(damage);
+
+		//Play a sound
+		PlayRandomSound();
+
+		//Particles!
+		if (particles != null) particles.Play();
+
+		//Clean up
+		Destroy(gameObject);
 	}
+
+    void PlayRandomSound()
+    {
+		if (hitSounds != null) return;		//Make sure there are sounds first
+		var randomSound = hitSounds[UnityEngine.Random.Range(0, hitSounds.Count)];
+        audio.PlayOneShot(randomSound);
+    }
+
 }

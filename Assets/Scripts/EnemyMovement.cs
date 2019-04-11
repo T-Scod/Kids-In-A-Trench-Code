@@ -6,7 +6,7 @@ public class EnemyMovement : MonoBehaviour
     // what the enemy is going to move towards
     private Transform m_player;
     // the health of the player
-    private Player m_playerHealth;
+    private PlayerHealth m_playerHealth;
     // the health of the enemy
     private EnemyHealth m_enemyHealth;
     // reference to the nav mesh agent of the enemy
@@ -17,7 +17,7 @@ public class EnemyMovement : MonoBehaviour
         // finds a player object and sets the transform
         m_player = GameObject.FindGameObjectWithTag("Player").transform;
         // gets the components from the object
-        m_playerHealth = m_player.GetComponent<Player>();
+        m_playerHealth = m_player.GetComponent<PlayerHealth>();
         m_enemyHealth = GetComponent<EnemyHealth>();
         m_nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
@@ -25,7 +25,7 @@ public class EnemyMovement : MonoBehaviour
     private void Update()
     {
         // checks if both the enemy and the player are alive
-        if (m_enemyHealth.m_currentHealth > 0 && m_playerHealth.m_currentHealth > 0)
+        if (m_enemyHealth.currentHP > 0 && m_playerHealth.currentHP > 0)
         {
             // moves the object towards the player
             m_nav.SetDestination(m_player.position);

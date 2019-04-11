@@ -112,9 +112,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c7d6cf5a9bd2473e9e63303b5fcf1c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
   mass: 0.5
   affectedByGravity: 0
-  lifeTime: 3
+  audio: {fileID: 0}
+  hitSounds: []
+  particles: {fileID: 0}
 --- !u!135 &135201534455910644
 SphereCollider:
   m_ObjectHideFlags: 1
