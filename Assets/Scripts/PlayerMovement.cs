@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     // length of the camera ray
     private float m_camRayLength = 100.0f;
 
+    public GameObject m_crosshair;
     private void Awake()
     {
         m_playerRb = GetComponent<Rigidbody>();
@@ -20,10 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
-            m_speedModifier = 2f;
-        else
-            m_speedModifier = 1f; 
+        transform.LookAt(new Vector3(m_crosshair.transform.position.x, transform.position.y, m_crosshair.transform.position.z));
         // gets the horizontal movement value
         float moveHorizontal = Input.GetAxisRaw("Horizontal");
         // gets the vertical movement value
@@ -41,6 +39,6 @@ public class PlayerMovement : MonoBehaviour
         // converts the movement vector to real time movement
         m_movement = m_movement.normalized * m_speed * Time.deltaTime;
         // moves the rigidbody to the current position plus the movement
-        m_playerRb.MovePosition(transform.position + m_movement * m_speedModifier);
+        m_playerRb.MovePosition(transform.position + m_movement);
     }
 }
