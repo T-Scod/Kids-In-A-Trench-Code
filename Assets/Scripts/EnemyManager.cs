@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -7,9 +6,6 @@ public class EnemyManager : MonoBehaviour
     public GameObject m_enemy;
     // the wait time between spawning
     public float m_spawnTime = 3.0f;
-    public int enemyCount = 10;
-    public List<GameObject> m_enemies = new List<GameObject>();
-
     // reference to the player's health
     private PlayerHealth m_playerHealth;
 
@@ -30,11 +26,9 @@ public class EnemyManager : MonoBehaviour
             return;
         }
 
-        if (m_enemies.Count <= enemyCount)
-        {
-            // creates a game object of the enemy type at the spawn point
-            m_enemies.Add(Instantiate(m_enemy, transform.position, transform.rotation) as GameObject);
-        }
+
+        // creates a game object of the enemy type at the spawn point
+        Instantiate(m_enemy, transform.position, transform.rotation);
     }
 
     public void IncEnemies()

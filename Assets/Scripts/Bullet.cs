@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 [RequireComponent(typeof(Collider))]
-[RequireComponent(typeof(Rigidbody))]
 public class Bullet : MonoBehaviour
 {
 	[SerializeField] int damage = 1;
-    [SerializeField] bool destroyOnContact = true;
-	[Header("Physics")]
 	[SerializeField] float mass = 0.5f;
 	[SerializeField] bool affectedByGravity = true;
 	[Header("Audio")]
 	[SerializeField] RandomAudioPlayer impactSounds;
 	[Header("Particles")]
 	[SerializeField] ParticleSystem particles;
+    [SerializeField] bool destroyOnContact = true;
 
 	protected GameObject m_owner;
 
@@ -55,9 +52,7 @@ public class Bullet : MonoBehaviour
 
 		//Clean up
 		if (destroyOnContact)
-		{
 			Destroy(gameObject);
-		} 
 	}
 
     void PlayImpactSound()

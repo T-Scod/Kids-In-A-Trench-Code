@@ -1,23 +1,18 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerInput : MonoBehaviour {
-    [SerializeField] bool invertHorizontal = false;
-	[SerializeField] bool invertVertical = false;
-	[SerializeField] bool raw = false;
-	[SerializeField] KeyCode dashButton = KeyCode.Mouse1;
-    [SerializeField] KeyCode sprintButton = KeyCode.LeftShift;
-    [Header("Guns")]
-	[SerializeField] KeyCode shootButton = KeyCode.Mouse0;
-    [SerializeField] KeyCode nextWeaponButton = KeyCode.RightBracket;
-    [SerializeField] KeyCode prevWeaponButton = KeyCode.LeftBracket;
 
-    [HideInInspector] public Vector2 axis;
+	[HideInInspector] public Vector2 axis;
 	[HideInInspector] public bool isShooting;	
 	[HideInInspector] public bool isDashing;
     [HideInInspector] public bool isSprinting;
-    [HideInInspector] public bool selectNextWeapon;
-    [HideInInspector] public bool selectPrevWeapon;
+
+    [SerializeField] bool invertHorizontal = false;
+	[SerializeField] bool invertVertical = false;
+	[SerializeField] bool raw = false;
+	[SerializeField] KeyCode shootButton = KeyCode.Mouse0;
+	[SerializeField] KeyCode dashButton = KeyCode.Mouse1;
+    [SerializeField] KeyCode sprintButton = KeyCode.LeftShift;
 
 
     void Update ()
@@ -26,27 +21,9 @@ public class PlayerInput : MonoBehaviour {
         SetShoot();
         SetDash();
         SetSprint();
-        SwapWeapons();
     }
 
-    void SwapWeapons()
-    {
-        if (Input.GetKeyDown(nextWeaponButton))
-        {
-            selectNextWeapon = true;
-        }
-        else if (Input.GetKeyDown(prevWeaponButton))
-        {
-            selectPrevWeapon = true;
-        }
-        else
-        {
-            selectNextWeapon = false;
-            selectPrevWeapon = false;
-        }
-    }
-
-    void SetDash()
+    private void SetDash()
     {
         if (Input.GetKeyDown(dashButton))
         {

@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Assertions;
-using UnityEngine.Events;
+﻿using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -13,21 +10,6 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] UnityEvent OnShoot;
     
     float timer;
-
-
-    void Start()
-    {
-        //Own the own guns!!!
-        foreach (var g in guns)
-        {
-            g.SetOwner(this.gameObject);
-        }
-        
-        // Assert.IsTrue(guns.Count > 0);     //Make sure there is atleast one gun
-        currentGun = guns[0];
-
-        // Assert.IsNotNull(randomAudio);
-    }
 
     private void Update()
     {
@@ -55,5 +37,4 @@ public class PlayerShooting : MonoBehaviour
         if (gunIndex < 0) gunIndex = guns.Count-1;    //Wrap around
         currentGun = guns[gunIndex];
     }
-
 }

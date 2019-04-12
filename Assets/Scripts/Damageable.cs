@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions;
 using UnityEngine.Events;
 
 public abstract class Damageable : MonoBehaviour
@@ -44,7 +43,7 @@ public abstract class Damageable : MonoBehaviour
         }
     }
 
-    public virtual void ResetDamage()
+    public void ResetDamage()
     {
         currentHP = maxHP;
         isInvulnerable = false;
@@ -52,7 +51,7 @@ public abstract class Damageable : MonoBehaviour
         OnResetDamage.Invoke();
     }
 
-    public virtual void TakeDamage(int damageAmount)
+    public void TakeDamage(int damageAmount)
     {
         //Ignore damage if already dead
         if (isDead) return;
@@ -74,7 +73,6 @@ public abstract class Damageable : MonoBehaviour
         else
         {
             OnReceiveDamage.Invoke();
-            Hit();
         }
     }
 
@@ -85,13 +83,14 @@ public abstract class Damageable : MonoBehaviour
             hitSounds.PlayOnce();
     }
 
-    //Virtual methods that do nothing but can be overriden and implementd by the children
-    public virtual void Hit() 
+    private void PlayRandomSound()
     {
         PlayRandomHitSound();
 
         if (anim != null)
             anim.SetTrigger("TakeDamage");
     }
+
     public virtual void Death() {}
+
 }

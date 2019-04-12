@@ -54,7 +54,6 @@ public class PlayerController : MonoBehaviour
     {
         if (input.isShooting)
         {
-            // Debug.Log("Controller calls Shooter Shoot");
             shooter.Shoot();
         }
     }
