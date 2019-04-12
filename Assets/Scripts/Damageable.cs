@@ -81,7 +81,7 @@ public abstract class Damageable : MonoBehaviour
     }
 
     //------- Accessible via unity events ------/
-    public void PlayRandomSound() 
+    private void PlayRandomSound() 
     {
         randomAudio.PlayOnce();
     }

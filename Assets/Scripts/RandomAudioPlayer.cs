@@ -9,7 +9,8 @@ public class RandomAudioPlayer : MonoBehaviour {
 	public void PlayOnce()
 	{
 		var randomSound = sounds[UnityEngine.Random.Range(0, sounds.Count)];
-		if (randomSound != null)
+		if (randomSound != null){
 			audio.PlayOneShot(randomSound);
+		}
 	}
 }
