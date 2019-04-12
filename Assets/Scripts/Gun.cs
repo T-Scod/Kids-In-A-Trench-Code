@@ -14,7 +14,7 @@ public class Gun : MonoBehaviour {
     [SerializeField] float bulletLifetime = 3f;
 
 	[Header("Audio")]
-	[SerializeField] RandomAudioPlayer randomAudio;
+	[SerializeField] RandomAudioPlayer gunSounds;
 
 
     [Header("Particles")]
@@ -22,7 +22,7 @@ public class Gun : MonoBehaviour {
 
 	//Privates
 	GameObject owner;
-	float timer;
+	float timeSinceLastFired;
 
 
 	public void SetOwner(GameObject parent)	//It is the PlayerShooter's responsibility to own this gun
@@ -32,13 +32,15 @@ public class Gun : MonoBehaviour {
 
     public void Fire()
     {
-		// Debug.Log("Gun firing bullet");
+        // Debug.Log("Gun firing bullet");
         //Regulate shots
-        if (timer < timeBetweenShots && !autoFire)
+        if (timeSinceLastFired < timeBetweenShots && !autoFire)
             return;
 
         // resets the timer
-        timer = 0f;
+        timeSinceLastFired = 0f;
+
+        PlayGunSound();
 
         //Instantiate
         var tempObj = Instantiate(bulletPrefab, transform.position, transform.rotation) as GameObject;
@@ -54,5 +56,14 @@ public class Gun : MonoBehaviour {
 
         //Clean up
         Destroy(tempObj, bulletLifetime);
+    }
+
+    void PlayGunSound()
+    {
+        //Play gun sound
+        if (gunSounds != null)
+        {
+            gunSounds.PlayOnce();
+        }
     }
 }

@@ -10,9 +10,6 @@ public class PlayerShooting : MonoBehaviour
     Gun currentGun;
     private int gunIndex = 0;
 
-    [Header("Audio")]
-    [SerializeField] RandomAudioPlayer randomAudio;
-
     [SerializeField] UnityEvent OnShoot;
     
     float timer;
@@ -42,7 +39,6 @@ public class PlayerShooting : MonoBehaviour
     {
         // Debug.Log("Shooter calls Gun Fire");
         currentGun.Fire();
-        randomAudio.PlayOnce();
         OnShoot.Invoke();
     }
 

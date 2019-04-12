@@ -11,11 +11,11 @@ public abstract class Damageable : MonoBehaviour
     [Header("Animations")]
     [SerializeField] Animator anim;
     [Header("Audio")]
-    [SerializeField] RandomAudioPlayer randomAudio;
+    [SerializeField] RandomAudioPlayer hitSounds;
     [SerializeField] UnityEvent OnDeath, OnReceiveDamage, OnHitWhileInvulnerable, OnBecomeInvulnerable, OnResetDamage;
 
 
-    public bool isInvulnerable { get; set; }
+    public bool isInvulnerable;
     public int currentHP { get; private set; }
     public bool isDead { get { return currentHP <= 0; } }
 
@@ -28,8 +28,6 @@ public abstract class Damageable : MonoBehaviour
     {
         ResetDamage();
         m_collider = GetComponent<Collider>();
-
-        // Assert.IsNotNull(randomAudio);
     }
 
     void Update()
@@ -81,16 +79,19 @@ public abstract class Damageable : MonoBehaviour
     }
 
     //------- Accessible via unity events ------/
-    private void PlayRandomSound() 
+    private void PlayRandomHitSound() 
     {
-        randomAudio.PlayOnce();
+        if (hitSounds != null)
+            hitSounds.PlayOnce();
     }
 
     //Virtual methods that do nothing but can be overriden and implementd by the children
     public virtual void Hit() 
     {
-        PlayRandomSound();
-        anim.SetTrigger("TakeDamage");
+        PlayRandomHitSound();
+
+        if (anim != null)
+            anim.SetTrigger("TakeDamage");
     }
     public virtual void Death() {}
 }
