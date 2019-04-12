@@ -11,7 +11,7 @@ public class EnemyManager : MonoBehaviour
 
     // reference to the player's health
     private PlayerHealth m_playerHealth;
-    private List<GameObject> m_enemies;
+    private List<GameObject> m_enemies = new List<GameObject>();
 
     private void Start()
     {
@@ -33,7 +33,7 @@ public class EnemyManager : MonoBehaviour
         if (m_enemies.Count <= enemyCount)
         {
             // creates a game object of the enemy type at the spawn point
-            m_enemies.Add(Instantiate(m_enemy, transform.position, transform.rotation));
+            m_enemies.Add(Instantiate(m_enemy, transform.position, transform.rotation) as GameObject);
         }
     }
 }
