@@ -14,6 +14,7 @@ public class MapGenerator : MonoBehaviour
     public int randomFillPercent;
     public GameObject enemySpawner;
     public GameObject playerPrefab;
+    public int spawnersAmount = 3;
 
     [HideInInspector] public GameObject playerReference;    //This is so that other objects can reference the main player upon instantiation
 
@@ -75,7 +76,7 @@ public class MapGenerator : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < spawnersAmount; i++)
         {
             openSpace = false;
             while (!openSpace)
