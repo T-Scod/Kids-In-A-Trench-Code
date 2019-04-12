@@ -13,12 +13,13 @@ public class Bullet : MonoBehaviour
 	[SerializeField] List<AudioClip> hitSounds;
 	[Header("Particles")]
 	[SerializeField] ParticleSystem particles;
+    [SerializeField] bool destroyOnContact = true;
 
 	protected GameObject m_owner;
 
 	Rigidbody rb;
 
-	void Awake()
+    void Awake()
 	{
 		rb = GetComponent<Rigidbody>();
 		rb.mass = mass;
@@ -51,7 +52,8 @@ public class Bullet : MonoBehaviour
 		if (particles != null) particles.Play();
 
 		//Clean up
-		Destroy(gameObject);
+		if (destroyOnContact)
+			Destroy(gameObject);
 	}
 
     void PlayRandomSound()
