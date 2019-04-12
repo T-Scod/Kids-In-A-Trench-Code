@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 [RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(Rigidbody))]
 public class Bullet : MonoBehaviour
 {
 	[SerializeField] int damage = 1;
+    [SerializeField] bool destroyOnContact = true;
+	[Header("Physics")]
 	[SerializeField] float mass = 0.5f;
 	[SerializeField] bool affectedByGravity = true;
 	[Header("Audio")]
-	[SerializeField] new AudioSource audio;
-	[SerializeField] List<AudioClip> hitSounds;
+	[SerializeField] RandomAudioPlayer randomAudio;
 	[Header("Particles")]
 	[SerializeField] ParticleSystem particles;
-    [SerializeField] bool destroyOnContact = true;
 
 	protected GameObject m_owner;
 
@@ -24,6 +26,11 @@ public class Bullet : MonoBehaviour
 		rb = GetComponent<Rigidbody>();
 		rb.mass = mass;
 		rb.useGravity = affectedByGravity;
+	}
+
+	void Start()
+	{
+		// Assert.IsNotNull(randomAudio);
 	}
 
 	public void SetOwner(GameObject owner)
@@ -58,9 +65,7 @@ public class Bullet : MonoBehaviour
 
     void PlayRandomSound()
     {
-		if (hitSounds != null) return;		//Make sure there are sounds first
-		var randomSound = hitSounds[UnityEngine.Random.Range(0, hitSounds.Count)];
-        audio.PlayOneShot(randomSound);
+		randomAudio.PlayOnce();
     }
 
 }

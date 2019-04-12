@@ -25,6 +25,19 @@ public class PlayerController : MonoBehaviour
         ControlLook();
         ControlMovement();
         ControlShooting();
+        ControlWeaponSwapping();
+    }
+
+    void ControlWeaponSwapping()
+    {
+        if (input.selectNextWeapon) {
+       		Debug.Log("next weapon");
+            shooter.NextGun();
+        }
+        if (input.selectPrevWeapon) {
+            Debug.Log("prev weapon");
+            shooter.PrevGun();
+        }
     }
 
     void FixedUpdate()
@@ -41,6 +54,7 @@ public class PlayerController : MonoBehaviour
     {
         if (input.isShooting)
         {
+            Debug.Log("Controller calls Shooter Shoot");
             shooter.Shoot();
         }
     }

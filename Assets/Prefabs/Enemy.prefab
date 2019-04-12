@@ -143,8 +143,8 @@ MonoBehaviour:
   maxHP: 1
   invulnerabiltyTime: 0.1
   anim: {fileID: 0}
-  audio: {fileID: 0}
-  hitSounds: []
+  randomAudio: {fileID: 114729196950638002, guid: c7157e8e68ab56b4eb11dfc8e88a9621,
+    type: 2}
   OnDeath:
     m_PersistentCalls:
       m_Calls: []

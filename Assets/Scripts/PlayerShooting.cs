@@ -1,14 +1,36 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Assertions;
+using UnityEngine.Events;
 
 public class PlayerShooting : MonoBehaviour
 {
-    [SerializeField] GameObject bulletPrefab;
-    [SerializeField] Transform muzzle;
-    [SerializeField] float launchForce = 500;
-    [SerializeField] ForceMode launchForceMode = ForceMode.Force;
-    [SerializeField] float timeBetweenShots = 0.15f;
-    [SerializeField] float bulletLifetime = 3f;
+    [Header("Guns")]
+    [SerializeField] List<Gun> guns;
+    Gun currentGun;
+    private int gunIndex = 0;
+
+    [Header("Audio")]
+    [SerializeField] RandomAudioPlayer randomAudio;
+
+    [SerializeField] UnityEvent OnShoot;
+    
     float timer;
+
+
+    void Start()
+    {
+        //Own the own guns!!!
+        foreach (var g in guns)
+        {
+            g.SetOwner(this.gameObject);
+        }
+        
+        // Assert.IsTrue(guns.Count > 0);     //Make sure there is atleast one gun
+        currentGun = guns[0];
+
+        // Assert.IsNotNull(randomAudio);
+    }
 
     private void Update()
     {
@@ -18,26 +40,24 @@ public class PlayerShooting : MonoBehaviour
 
     public void Shoot()
     {
-        //Regulate shots
-        if (timer < timeBetweenShots)
-            return;
-
-        // resets the timer
-        timer = 0f;
-
-        //Instantiate
-        var tempObj = Instantiate(bulletPrefab, transform.position, transform.rotation) as GameObject;
-
-        //Set the bullet's owner to prevent self harm
-        tempObj.GetComponent<Bullet>().SetOwner(this.gameObject);
-
-        //Retrieve rigidbody
-        var tempRB = tempObj.GetComponent<Rigidbody>();
-
-        //Launch
-        tempRB.AddForce(transform.forward * launchForce, launchForceMode);
-
-        //Clean up
-        Destroy(tempObj, bulletLifetime);
+        Debug.Log("Shooter calls Gun Fire");
+        currentGun.Fire();
+        randomAudio.PlayOnce();
+        OnShoot.Invoke();
     }
+
+    public void NextGun()
+    {
+        gunIndex++;
+        if (gunIndex > guns.Count) gunIndex = 0;    //Wrap around
+        currentGun = guns[gunIndex];
+    }
+
+    public void PrevGun()
+    {
+        gunIndex--;
+        if (gunIndex < 0) gunIndex = guns.Count;    //Wrap around
+        currentGun = guns[gunIndex];
+    }
+
 }

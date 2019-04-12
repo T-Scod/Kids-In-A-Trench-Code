@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.Events;
 
 public abstract class Damageable : MonoBehaviour
@@ -10,8 +11,7 @@ public abstract class Damageable : MonoBehaviour
     [Header("Animations")]
     [SerializeField] Animator anim;
     [Header("Audio")]
-    [SerializeField] new AudioSource audio;
-    [SerializeField] List<AudioClip> hitSounds;
+    [SerializeField] RandomAudioPlayer randomAudio;
     [SerializeField] UnityEvent OnDeath, OnReceiveDamage, OnHitWhileInvulnerable, OnBecomeInvulnerable, OnResetDamage;
 
 
@@ -28,6 +28,8 @@ public abstract class Damageable : MonoBehaviour
     {
         ResetDamage();
         m_collider = GetComponent<Collider>();
+
+        // Assert.IsNotNull(randomAudio);
     }
 
     void Update()
@@ -44,7 +46,7 @@ public abstract class Damageable : MonoBehaviour
         }
     }
 
-    public void ResetDamage()
+    public virtual void ResetDamage()
     {
         currentHP = maxHP;
         isInvulnerable = false;
@@ -52,7 +54,7 @@ public abstract class Damageable : MonoBehaviour
         OnResetDamage.Invoke();
     }
 
-    public void TakeDamage(int damageAmount)
+    public virtual void TakeDamage(int damageAmount)
     {
         //Ignore damage if already dead
         if (isDead) return;
@@ -74,21 +76,21 @@ public abstract class Damageable : MonoBehaviour
         else
         {
             OnReceiveDamage.Invoke();
+            Hit();
         }
     }
 
-    public void Hit()
+    //------- Accessible via unity events ------/
+    public void PlayRandomSound() 
+    {
+        randomAudio.PlayOnce();
+    }
+
+    //Virtual methods that do nothing but can be overriden and implementd by the children
+    public virtual void Hit() 
     {
         PlayRandomSound();
         anim.SetTrigger("TakeDamage");
     }
-
-    private void PlayRandomSound()
-    {
-        var randomSound = hitSounds[UnityEngine.Random.Range(0, hitSounds.Count)];
-        audio.PlayOneShot(randomSound);
-    }
-
     public virtual void Death() {}
-
 }
