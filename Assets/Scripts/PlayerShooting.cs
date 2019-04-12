@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -24,22 +26,17 @@ public class PlayerShooting : MonoBehaviour
         OnShoot.Invoke();
     }
 
-        // resets the timer
-        timer = 0f;
+    public void NextGun()
+    {
+        gunIndex++;
+        if (gunIndex > guns.Count-1) gunIndex = 0;    //Wrap around
+        currentGun = guns[gunIndex];
+    }
 
-        //Instantiate
-        var tempObj = Instantiate(bulletPrefab, transform.position, transform.rotation) as GameObject;
-
-        //Set the bullet's owner to prevent self harm
-        tempObj.GetComponent<Bullet>().SetOwner(this.gameObject);
-
-        //Retrieve rigidbody
-        var tempRB = tempObj.GetComponent<Rigidbody>();
-
-        //Launch
-        tempRB.AddForce(transform.forward * launchForce, launchForceMode);
-
-        //Clean up
-        Destroy(tempObj, bulletLifetime);
+    public void PrevGun()
+    {
+        gunIndex--;
+        if (gunIndex < 0) gunIndex = guns.Count-1;    //Wrap around
+        currentGun = guns[gunIndex];
     }
 }
