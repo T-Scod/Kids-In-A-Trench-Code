@@ -56,16 +56,17 @@ public class MapGenerator : MonoBehaviour
 
         MeshGenerator meshGen = GetComponent<MeshGenerator>();
         meshGen.GenerateMesh(borderedMap, 1);
+        NavMeshSurface navMeshSurface = GetComponent<NavMeshSurface>();
+        navMeshSurface.BuildNavMesh();
 
         bool openSpace = false;
-        System.Random pseudoRandomX = new System.Random(seed.GetHashCode());
-        System.Random pseudoRandomY = new System.Random(seed.GetHashCode());
+        System.Random pseudoRandom = new System.Random(seed.GetHashCode());
 
         while (!openSpace)
         {
-            int x = pseudoRandomX.Next(0, width);
-            int y = pseudoRandomY.Next(0, height);
-            if (borderedMap[x, y] == 0)
+            int x = pseudoRandom.Next(0, width);
+            int y = pseudoRandom.Next(0, height);
+            if (m_map[x, y] == 0)
             {
                 openSpace = true;
                 Vector3 position = CoordToWorldPoint(new Coord(x, y));
@@ -79,9 +80,9 @@ public class MapGenerator : MonoBehaviour
             openSpace = false;
             while (!openSpace)
             {
-                int x = pseudoRandomX.Next(0, width);
-                int y = pseudoRandomY.Next(0, height);
-                if (borderedMap[x, y] == 0)
+                int x = pseudoRandom.Next(0, width);
+                int y = pseudoRandom.Next(0, height);
+                if (m_map[x, y] == 0)
                 {
                     openSpace = true;
                     Vector3 position = CoordToWorldPoint(new Coord(x, y));
@@ -90,8 +91,6 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
-
-        GetComponent<NavMeshSurface>().BuildNavMesh();
     }
 
     private void ProcessMap()
