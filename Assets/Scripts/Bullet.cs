@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour
 	[SerializeField] float mass = 0.5f;
 	[SerializeField] bool affectedByGravity = true;
 	[Header("Audio")]
-	[SerializeField] RandomAudioPlayer randomAudio;
+	[SerializeField] RandomAudioPlayer impactSounds;
 	[Header("Particles")]
 	[SerializeField] ParticleSystem particles;
 
@@ -53,7 +53,7 @@ public class Bullet : MonoBehaviour
 		dam.TakeDamage(damage);
 
 		//Play a sound
-		PlayRandomSound();
+		PlayImpactSound();
 
 		//Particles!
 		if (particles != null) particles.Play();
@@ -65,9 +65,10 @@ public class Bullet : MonoBehaviour
 		} 
 	}
 
-    void PlayRandomSound()
+    void PlayImpactSound()
     {
-		randomAudio.PlayOnce();
+		if (impactSounds != null)
+			impactSounds.PlayOnce();
     }
 
 }
