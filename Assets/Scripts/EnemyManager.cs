@@ -8,10 +8,10 @@ public class EnemyManager : MonoBehaviour
     // the wait time between spawning
     public float m_spawnTime = 3.0f;
     public int enemyCount = 10;
+    public List<GameObject> m_enemies = new List<GameObject>();
 
     // reference to the player's health
     private PlayerHealth m_playerHealth;
-    private List<GameObject> m_enemies = new List<GameObject>();
 
     private void Start()
     {
