@@ -8,6 +8,7 @@ public class EnemyManager : MonoBehaviour
     public float m_spawnTime = 3.0f;
     // reference to the player's health
     private PlayerHealth m_playerHealth;
+    public  int enemyCount;
 
     private void Start()
     {
