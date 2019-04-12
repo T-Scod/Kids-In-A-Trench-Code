@@ -389,11 +389,11 @@ MonoBehaviour:
   invertHorizontal: 0
   invertVertical: 0
   raw: 0
-  dashButton: 324
-  sprintButton: 304
-  shootButton: 323
-  nextWeaponButton: 93
-  prevWeaponButton: 91
+  dashButton: 304
+  sprintButton: 0
+  shootButton: 32
+  nextWeaponButton: 323
+  prevWeaponButton: 324
   axis: {x: 0, y: 0}
   isShooting: 0
   isDashing: 0
@@ -438,7 +438,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 114511886845390498}
         m_MethodName: set_enabled
@@ -449,7 +449,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null

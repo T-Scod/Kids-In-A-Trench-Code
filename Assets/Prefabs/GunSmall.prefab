@@ -55,7 +55,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1673101627250148, guid: a6c2322bf34d3a4438483231f015019d,
     type: 2}
   muzzle: {fileID: 4054942443678152}
-  launchForce: 500
+  launchForce: 700
   launchForceMode: 0
   timeBetweenShots: 0.3
   bulletLifetime: 3

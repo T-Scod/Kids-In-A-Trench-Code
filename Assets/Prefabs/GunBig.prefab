@@ -55,9 +55,9 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1673101627250148, guid: 2b7b32fdc6b6a21449ff322b68a89b4a,
     type: 2}
   muzzle: {fileID: 4054942443678152}
-  launchForce: 250
+  launchForce: 700
   launchForceMode: 0
-  timeBetweenShots: 1
+  timeBetweenShots: 5
   bulletLifetime: 3
   randomAudio: {fileID: 114729196950638002, guid: c7157e8e68ab56b4eb11dfc8e88a9621,
     type: 2}
