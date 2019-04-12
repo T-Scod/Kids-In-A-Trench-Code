@@ -45,14 +45,14 @@ public class PlayerShooting : MonoBehaviour
     public void NextGun()
     {
         gunIndex++;
-        if (gunIndex > guns.Count) gunIndex = 0;    //Wrap around
+        if (gunIndex > guns.Count-1) gunIndex = 0;    //Wrap around
         currentGun = guns[gunIndex];
     }
 
     public void PrevGun()
     {
         gunIndex--;
-        if (gunIndex < 0) gunIndex = guns.Count;    //Wrap around
+        if (gunIndex < 0) gunIndex = guns.Count-1;    //Wrap around
         currentGun = guns[gunIndex];
     }
 

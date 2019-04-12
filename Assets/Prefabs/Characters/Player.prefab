@@ -790,7 +790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd75a74e3c7bc8842ad97390011fa3bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoFire: 1
+  autoFire: 0
   bulletPrefab: {fileID: 1673101627250148, guid: a6c2322bf34d3a4438483231f015019d,
     type: 2}
   muzzle: {fileID: 4602377566323758}

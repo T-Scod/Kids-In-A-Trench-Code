@@ -60,7 +60,7 @@ public class PlayerInput : MonoBehaviour {
 
     private void SetShoot()
     {
-        if (Input.GetKeyDown(shootButton))
+        if (Input.GetKey(shootButton))
         {
             isShooting = true;
         }

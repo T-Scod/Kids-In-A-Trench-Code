@@ -36,4 +36,9 @@ public class EnemyManager : MonoBehaviour
             m_enemies.Add(Instantiate(m_enemy, transform.position, transform.rotation) as GameObject);
         }
     }
+
+    public void IncEnemies()
+    {
+        enemyCount++;
+    }
 }

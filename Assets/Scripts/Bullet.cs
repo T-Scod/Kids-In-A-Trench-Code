@@ -28,11 +28,6 @@ public class Bullet : MonoBehaviour
 		rb.useGravity = affectedByGravity;
 	}
 
-	void Start()
-	{
-		// Assert.IsNotNull(randomAudio);
-	}
-
 	public void SetOwner(GameObject owner)
 	{
 		m_owner = owner;

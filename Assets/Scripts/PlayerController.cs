@@ -31,11 +31,11 @@ public class PlayerController : MonoBehaviour
     void ControlWeaponSwapping()
     {
         if (input.selectNextWeapon) {
-       		Debug.Log("next weapon");
+       		// Debug.Log("next weapon");
             shooter.NextGun();
         }
         if (input.selectPrevWeapon) {
-            Debug.Log("prev weapon");
+            // Debug.Log("prev weapon");
             shooter.PrevGun();
         }
     }

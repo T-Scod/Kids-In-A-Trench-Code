@@ -34,7 +34,7 @@ public class EnemyHealth : Damageable
     {
         // disables the nav mesh agent
         GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
-        GetComponentInParent<EnemyManager>().m_enemies.Remove(gameObject);
+        GetComponentInParent<EnemyManager>().IncEnemies();
         // sets the rigidbody to kinematic so that it ignores the geometry
         GetComponent<Rigidbody>().isKinematic = true;
         // sets the sinking flag to true

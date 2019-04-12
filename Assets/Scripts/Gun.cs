@@ -24,18 +24,26 @@ public class Gun : MonoBehaviour {
 	GameObject owner;
 	float timeSinceLastFired;
 
+    void Update()
+    {
+        timeSinceLastFired += Time.deltaTime;
+    }
 
 	public void SetOwner(GameObject parent)	//It is the PlayerShooter's responsibility to own this gun
 	{
 		this.owner = parent;
 	}
 
+
+
     public void Fire()
     {
         // Debug.Log("Gun firing bullet");
         //Regulate shots
-        if (timeSinceLastFired < timeBetweenShots && !autoFire)
-            return;
+        if (!autoFire) {
+            if (timeSinceLastFired < timeBetweenShots)
+                return;
+        }
 
         // resets the timer
         timeSinceLastFired = 0f;
