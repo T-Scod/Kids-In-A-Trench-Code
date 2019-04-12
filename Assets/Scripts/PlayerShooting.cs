@@ -5,7 +5,7 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform muzzle;
     [SerializeField] float launchForce = 500;
-    [SerializeField] ForceMode launchForceMode = ForceMode.Impulse;
+    [SerializeField] ForceMode launchForceMode = ForceMode.Force;
     [SerializeField] float timeBetweenShots = 0.15f;
     [SerializeField] float bulletLifetime = 3f;
     float timer;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -162,12 +162,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spacing: 5
-  heartPrefab: {fileID: 114292296921635694, guid: 8206749d75ab548e3b443f1c08ad6426,
-    type: 2}
-  hearts:
-  - {fileID: 381956983}
-  - {fileID: 1342828429}
-  - {fileID: 1543898973}
+  heartPrefab: {fileID: 0}
+  hearts: []
 --- !u!1 &122943257
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,7 +247,7 @@ MonoBehaviour:
   m_AgentTypeID: 0
   m_StartPoint: {x: 0, y: 0, z: -2.5}
   m_EndPoint: {x: 0, y: 0, z: 2.5}
-  m_Width: 200
+  m_Width: 0
   m_CostModifier: -1
   m_Bidirectional: 1
   m_AutoUpdatePosition: 0
@@ -268,7 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
-  m_CollectObjects: 2
+  m_CollectObjects: 0
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
@@ -397,11 +393,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4a65008b05f44efabc55b7e74a802b1, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &381956983 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1124494022863278, guid: 8206749d75ab548e3b443f1c08ad6426,
-    type: 2}
-  m_PrefabInternal: {fileID: 1972517368}
 --- !u!224 &381956984 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224465169101721518, guid: 8206749d75ab548e3b443f1c08ad6426,
