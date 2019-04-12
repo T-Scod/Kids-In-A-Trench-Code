@@ -2,12 +2,13 @@
 
 public class PlayerShooting : MonoBehaviour
 {
-    [SerializeField] GameObject bulletPrefab;
-    [SerializeField] Transform muzzle;
-    [SerializeField] float launchForce = 500;
-    [SerializeField] ForceMode launchForceMode = ForceMode.Force;
-    [SerializeField] float timeBetweenShots = 0.15f;
-    [SerializeField] float bulletLifetime = 3f;
+    [Header("Guns")]
+    [SerializeField] List<Gun> guns;
+    Gun currentGun;
+    private int gunIndex = 0;
+
+    [SerializeField] UnityEvent OnShoot;
+    
     float timer;
 
     private void Update()
@@ -18,9 +19,10 @@ public class PlayerShooting : MonoBehaviour
 
     public void Shoot()
     {
-        //Regulate shots
-        if (timer < timeBetweenShots)
-            return;
+        // Debug.Log("Shooter calls Gun Fire");
+        currentGun.Fire();
+        OnShoot.Invoke();
+    }
 
         // resets the timer
         timer = 0f;

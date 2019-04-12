@@ -9,8 +9,7 @@ public class Bullet : MonoBehaviour
 	[SerializeField] float mass = 0.5f;
 	[SerializeField] bool affectedByGravity = true;
 	[Header("Audio")]
-	[SerializeField] new AudioSource audio;
-	[SerializeField] List<AudioClip> hitSounds;
+	[SerializeField] RandomAudioPlayer impactSounds;
 	[Header("Particles")]
 	[SerializeField] ParticleSystem particles;
     [SerializeField] bool destroyOnContact = true;
@@ -46,7 +45,7 @@ public class Bullet : MonoBehaviour
 		dam.TakeDamage(damage);
 
 		//Play a sound
-		PlayRandomSound();
+		PlayImpactSound();
 
 		//Particles!
 		if (particles != null) particles.Play();
@@ -56,11 +55,10 @@ public class Bullet : MonoBehaviour
 			Destroy(gameObject);
 	}
 
-    void PlayRandomSound()
+    void PlayImpactSound()
     {
-		if (hitSounds != null) return;		//Make sure there are sounds first
-		var randomSound = hitSounds[UnityEngine.Random.Range(0, hitSounds.Count)];
-        audio.PlayOneShot(randomSound);
+		if (impactSounds != null)
+			impactSounds.PlayOnce();
     }
 
 }

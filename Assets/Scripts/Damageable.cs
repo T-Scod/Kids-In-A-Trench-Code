@@ -10,12 +10,11 @@ public abstract class Damageable : MonoBehaviour
     [Header("Animations")]
     [SerializeField] Animator anim;
     [Header("Audio")]
-    [SerializeField] new AudioSource audio;
-    [SerializeField] List<AudioClip> hitSounds;
+    [SerializeField] RandomAudioPlayer hitSounds;
     [SerializeField] UnityEvent OnDeath, OnReceiveDamage, OnHitWhileInvulnerable, OnBecomeInvulnerable, OnResetDamage;
 
 
-    public bool isInvulnerable { get; set; }
+    public bool isInvulnerable;
     public int currentHP { get; private set; }
     public bool isDead { get { return currentHP <= 0; } }
 
@@ -77,16 +76,19 @@ public abstract class Damageable : MonoBehaviour
         }
     }
 
-    public void Hit()
+    //------- Accessible via unity events ------/
+    private void PlayRandomHitSound() 
     {
-        PlayRandomSound();
-        anim.SetTrigger("TakeDamage");
+        if (hitSounds != null)
+            hitSounds.PlayOnce();
     }
 
     private void PlayRandomSound()
     {
-        var randomSound = hitSounds[UnityEngine.Random.Range(0, hitSounds.Count)];
-        audio.PlayOneShot(randomSound);
+        PlayRandomHitSound();
+
+        if (anim != null)
+            anim.SetTrigger("TakeDamage");
     }
 
     public virtual void Death() {}
