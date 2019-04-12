@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 82937567379845516}
   - component: {fileID: 114729196950638002}
   m_Layer: 0
-  m_Name: ExRAP
+  m_Name: ExampleSounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
