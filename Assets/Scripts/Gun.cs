@@ -32,7 +32,7 @@ public class Gun : MonoBehaviour {
 
     public void Fire()
     {
-		Debug.Log("Gun firing bullet");
+		// Debug.Log("Gun firing bullet");
         //Regulate shots
         if (timer < timeBetweenShots && !autoFire)
             return;

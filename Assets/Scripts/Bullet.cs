@@ -60,7 +60,9 @@ public class Bullet : MonoBehaviour
 
 		//Clean up
 		if (destroyOnContact)
+		{
 			Destroy(gameObject);
+		} 
 	}
 
     void PlayRandomSound()

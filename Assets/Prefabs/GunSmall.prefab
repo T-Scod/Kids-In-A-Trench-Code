@@ -57,7 +57,7 @@ MonoBehaviour:
   muzzle: {fileID: 4054942443678152}
   launchForce: 500
   launchForceMode: 0
-  timeBetweenShots: 0.15
+  timeBetweenShots: 0.3
   bulletLifetime: 3
   randomAudio: {fileID: 114729196950638002, guid: c7157e8e68ab56b4eb11dfc8e88a9621,
     type: 2}

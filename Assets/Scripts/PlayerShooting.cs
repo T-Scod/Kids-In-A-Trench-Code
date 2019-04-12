@@ -40,7 +40,7 @@ public class PlayerShooting : MonoBehaviour
 
     public void Shoot()
     {
-        Debug.Log("Shooter calls Gun Fire");
+        // Debug.Log("Shooter calls Gun Fire");
         currentGun.Fire();
         randomAudio.PlayOnce();
         OnShoot.Invoke();

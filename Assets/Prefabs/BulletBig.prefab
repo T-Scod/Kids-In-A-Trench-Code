@@ -115,7 +115,7 @@ MonoBehaviour:
   damage: 3
   destroyOnContact: 0
   mass: 1
-  affectedByGravity: 1
+  affectedByGravity: 0
   randomAudio: {fileID: 114729196950638002, guid: c7157e8e68ab56b4eb11dfc8e88a9621,
     type: 2}
   particles: {fileID: 0}
