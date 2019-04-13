@@ -32,7 +32,7 @@ public class SmoothCamera : MonoBehaviour
 			//Cinematice zoom in upon player death
 			if (player.isDead)
 			{
-				offset.y = 10; offset.z = 0; lerp = 0.04f;
+				offset.y = 8; offset.z = 0; lerp = 0.03f;
 				lookAtPlayer = true;
 			}
         }

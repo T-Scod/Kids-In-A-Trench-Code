@@ -16,7 +16,7 @@ public class EnemyHealth : Damageable
         rb = GetComponent<Rigidbody>();
     }
 
-    private void Update()
+    private void Update()	//This cannot be Update as it blocks Damageable.Update()
     {
         if(isDead)
         {
@@ -27,17 +27,15 @@ public class EnemyHealth : Damageable
     public override void Death()
     {
         //Stop and fall through the floor
+		isInvulnerable = false;
         col.enabled = false;
         col.isTrigger = true;
         rb.velocity = new Vector3(0,0,0);
-        // rb.useGravity = true;
-        // rb.constraints = RigidbodyConstraints.None;
 
         //Add to score
         ScoreManager.score += m_scoreValue;
 
         GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
-        
         manager.RemoveFromManager(gameObject);
 
         //Clean up

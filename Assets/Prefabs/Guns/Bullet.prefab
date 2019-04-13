@@ -239,11 +239,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 3072
   destroyOnContact: 1
   mass: 1
   affectedByGravity: 0
   impactSounds: {fileID: 114567489900067436}
-  particles: {fileID: 0}
+  hitParticle: {fileID: 198003255830713970, guid: 9fa0c6825a0e24cbf90af89405d09bdb,
+    type: 2}
 --- !u!114 &114567489900067436
 MonoBehaviour:
   m_ObjectHideFlags: 1

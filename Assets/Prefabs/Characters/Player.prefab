@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4856533258433358}
   - component: {fileID: 82500281889962668}
   - component: {fileID: 114664487069301070}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MedGunSounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4602377566323758}
   - component: {fileID: 114205319567928526}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SMG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 33567572832839070}
   - component: {fileID: 23868760704209062}
   - component: {fileID: 65014913933835412}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 4766015711611256}
   - component: {fileID: 82894086336893708}
   - component: {fileID: 114777797894704074}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LargeGunSounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 4225560532348524}
   - component: {fileID: 82553314210798262}
   - component: {fileID: 114544845891776158}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SmallGunSounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 114954332031327298}
   - component: {fileID: 114511886845390498}
   - component: {fileID: 114193375529463930}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 4105214810109108}
   - component: {fileID: 82970411557488850}
   - component: {fileID: 114055838580965862}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HitSounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4422861232190826}
   - component: {fileID: 114600876279725642}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hadouken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4206194169329680}
   - component: {fileID: 114708729497236936}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SpiritBombLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 33026191795999336}
   - component: {fileID: 23542793874351936}
   - component: {fileID: 136842983583321782}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Kid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -893,7 +893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b51396de1719d4dac88268773784c75d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenFlashes: 0.08
+  timeBetweenFlashes: 0.05
 --- !u!114 &114200279326059610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -951,7 +951,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_maxHP: 5
-  m_invulnerabiltyTime: 1
+  invulnerableTime: 3
   anim: {fileID: 0}
   hitSounds: {fileID: 114055838580965862}
   OnDeath:
@@ -990,17 +990,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   OnReceiveDamage:
@@ -1018,7 +1007,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 114193375529463930}
-        m_MethodName: Flash
+        m_MethodName: BeInvulnerable
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1167,7 +1156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96e95605909616947842e18ee20abfd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 15
   movement: {x: 0, y: 0, z: 0}
 --- !u!136 &136285671080225418
 CapsuleCollider:
@@ -1190,7 +1179,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1771440731956810}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1

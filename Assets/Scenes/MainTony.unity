@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -327,10 +327,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8db914cd16719384a96d322e13e1cabb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 0, y: 25, z: -10}
-  lerp: 0.8
+  offset: {x: 0, y: 25, z: -15}
+  lerp: 0.2
   lookAtPlayer: 0
-  orientTime: 1
+  orientTime: 0.5
 --- !u!81 &370285598
 AudioListener:
   m_ObjectHideFlags: 0
@@ -637,6 +637,7 @@ GameObject:
   - component: {fileID: 835857825}
   - component: {fileID: 835857823}
   - component: {fileID: 835857824}
+  - component: {fileID: 835857826}
   m_Layer: 0
   m_Name: Walls
   m_TagString: Untagged
@@ -699,6 +700,20 @@ Transform:
   m_Father: {fileID: 122943259}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &835857826
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 835857822}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 0}
 --- !u!1 &870228674
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,8 +802,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -180}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 0, y: -189.74}
+  m_SizeDelta: {x: 160, y: 49.48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &883663002
 MonoBehaviour:
@@ -901,7 +916,7 @@ GameObject:
   - component: {fileID: 1038594122}
   m_Layer: 0
   m_Name: UserUI
-  m_TagString: Canvas
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1237,6 +1252,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1370977351}
+  - component: {fileID: 1370977352}
   m_Layer: 0
   m_Name: World objects
   m_TagString: Untagged
@@ -1251,7 +1267,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1370977350}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.2255428, y: -1, z: 3.65}
+  m_LocalPosition: {x: 2.2255428, y: -4, z: 3.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2119934759}
@@ -1260,6 +1276,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1370977352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1370977350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc8edf97dc14359419c762d5af438f21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1411862661
 GameObject:
   m_ObjectHideFlags: 0
@@ -1526,7 +1553,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: cc3919bf4c8944588bc1c20eaa56e61d, type: 3}
-    m_FontSize: 25
+    m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -1804,7 +1831,7 @@ GameObject:
   - component: {fileID: 2119934760}
   m_Layer: 0
   m_Name: Crosshair
-  m_TagString: Crosshair
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1816,7 +1843,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2119934758}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.3544855, y: -39.59, z: 1.361093}
+  m_LocalPosition: {x: 9.3544855, y: 1, z: 1.361093}
   m_LocalScale: {x: 0.2, y: 1, z: 0.2}
   m_Children: []
   m_Father: {fileID: 1370977351}
@@ -1833,7 +1860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e17791f711a5d0945b08a8571d1e591f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceFromFloor: 1e-10
+  distanceFromFloor: 0
 --- !u!23 &2119934762
 MeshRenderer:
   m_ObjectHideFlags: 0

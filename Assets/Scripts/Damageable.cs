@@ -4,25 +4,24 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Events;
 
-public abstract class Damageable : MonoBehaviour
+public class Damageable : MonoBehaviour
 {
-    [SerializeField] int m_maxHP = 1;
-    [SerializeField] float m_invulnerabiltyTime = 2f;
+    [SerializeField] int m_maxHP = 2;
+    public float invulnerableTime = 0.1f;
     [Header("Animations")]
     [SerializeField] Animator anim;
     [Header("Audio")]
     [SerializeField] RandomAudioPlayer hitSounds;
     [SerializeField] UnityEvent OnDeath, OnReceiveDamage, OnHitWhileInvulnerable, OnBecomeVulnerable, OnResetDamage;
 
-    public float invulnerabiltyTime { get { return m_invulnerabiltyTime; } }
     public int maxHP { get { return m_maxHP; } }
+    public bool isInvulnerable { get; set; }
     public int currentHP { get; private set; }
     public bool isDead { get { return currentHP <= 0; } }
 
     protected float m_timeSinceLastHit;
     protected Collider m_collider;
 
-    bool isInvulnerable;
 
     void Start()
     {
@@ -30,12 +29,12 @@ public abstract class Damageable : MonoBehaviour
         m_collider = GetComponent<Collider>();
     }
 
-    void Update()
+    void LateUpdate()	//This must not be blocked by derived classes!!!
     {
         if (isInvulnerable)
         {
             m_timeSinceLastHit += Time.deltaTime;
-            if (m_timeSinceLastHit > invulnerabiltyTime)
+            if (m_timeSinceLastHit > invulnerableTime)
             {
                 m_timeSinceLastHit = 0f;
                 isInvulnerable = false;
@@ -44,7 +43,7 @@ public abstract class Damageable : MonoBehaviour
         }
     }
 
-    public virtual void ResetDamage()
+    public void ResetDamage()
     {
         currentHP = maxHP;
         isInvulnerable = false;
@@ -52,7 +51,13 @@ public abstract class Damageable : MonoBehaviour
         OnResetDamage.Invoke();
     }
 
-    public virtual void TakeDamage(int damageAmount)
+	public void SetColliderState(bool enabled)
+	{
+		m_collider.enabled = enabled;
+	}
+
+
+    public void TakeDamage(int damageAmount)
     {
         //Ignore damage if already dead
         if (isDead) return;
@@ -64,6 +69,7 @@ public abstract class Damageable : MonoBehaviour
         }
 
         //Finally take damage
+		isInvulnerable = true;
         currentHP -= damageAmount;
 
         if (currentHP <= 0)
@@ -79,16 +85,15 @@ public abstract class Damageable : MonoBehaviour
     }
 
     //------- Accessible via unity events ------/
-    private void PlayRandomHitSound() 
+    private void PlayHitSound() 
     {
-        if (hitSounds != null)
-            hitSounds.PlayOnce();
+        hitSounds.PlayOnce();
     }
 
     //Virtual methods that do nothing but can be overriden and implementd by the children
     public virtual void Hit() 
     {
-        PlayRandomHitSound();
+        PlayHitSound();
 
         if (anim != null)
             anim.SetTrigger("TakeDamage");

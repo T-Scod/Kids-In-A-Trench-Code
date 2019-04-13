@@ -254,11 +254,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 3
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 3072
   destroyOnContact: 0
   mass: 3
   affectedByGravity: 0
   impactSounds: {fileID: 114204471306463684}
-  particles: {fileID: 0}
+  hitParticle: {fileID: 0}
 --- !u!135 &135201534455910644
 SphereCollider:
   m_ObjectHideFlags: 1

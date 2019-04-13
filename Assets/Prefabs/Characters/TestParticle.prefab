@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 198003255830713970}
   - component: {fileID: 199247824864885812}
   m_Layer: 0
-  m_Name: Explosion
+  m_Name: TestParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

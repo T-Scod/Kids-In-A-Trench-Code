@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Assertions;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(Rigidbody))]
 public class Bullet : MonoBehaviour
 {
 	[SerializeField] int damage = 1;
+	[SerializeField] LayerMask targetLayers;
     [SerializeField] bool destroyOnContact = true;
 	[Header("Physics")]
 	[SerializeField] float mass = 0.5f;
@@ -15,7 +13,7 @@ public class Bullet : MonoBehaviour
 	[Header("Audio")]
 	[SerializeField] RandomAudioPlayer impactSounds;
 	[Header("Particles")]
-	[SerializeField] ParticleSystem particles;
+	[SerializeField] ParticleSystem hitParticle;
 
 	protected GameObject m_owner;
 
@@ -35,36 +33,35 @@ public class Bullet : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
-		//Retrive damageable
-		Damageable dam = other.GetComponent<Damageable>();
+		//Retreive damageable
+		Damageable dmg = other.GetComponent<Damageable>();
 
 		//Exit if nothing hit
-		if (dam == null) return;
+		if (dmg == null) return;
 
 		//Prevent self harm
-		if (dam.gameObject == m_owner) return;
+		if (dmg.gameObject == m_owner) return;
+
+		//Bounce of an object that is not on target layer
+		if ((targetLayers.value & (1 << other.gameObject.layer)) == 0)
+		{
+			return;
+		}
 
 		//Do the damage!
-		dam.TakeDamage(damage);
+		dmg.TakeDamage(damage);
 
 		//Play a sound
-		PlayImpactSound();
+		if (impactSounds != null)
+			impactSounds.PlayOnce();
 
 		//Particles!
-		if (particles != null) particles.Play();
+		if (hitParticle != null) 
+			hitParticle.Play();
 
-		//Clean up
+		//Clean up (gun is responsible for destroying object)
 		if (destroyOnContact)
-		{
 			Destroy(gameObject);
-		} 
 	}
-
-    void PlayImpactSound()
-    {
-		if (impactSounds != null)
-			Debug.Log("Playing impact sound");
-			impactSounds.PlayOnce();
-    }
 
 }
