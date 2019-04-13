@@ -5,9 +5,9 @@ public abstract class Attacker : MonoBehaviour {
 
 	[SerializeField] GameObject bulletPrefab;
 	[SerializeField] Transform muzzle;
-	[SerializeField] float launchForce = 750;
-	[SerializeField] float minTimeBetweenShots = 0.25f;
-	[SerializeField] float bulletLifetime = 3f;
+	// [SerializeField] float launchForce = 750;
+	// [SerializeField] float minTimeBetweenShots = 0.25f;
+	// [SerializeField] float bulletLifetime = 3f;
 
 	[Header("Audio")]
 	[SerializeField] RandomAudioPlayer attackSounds;

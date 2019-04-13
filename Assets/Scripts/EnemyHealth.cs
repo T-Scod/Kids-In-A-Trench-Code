@@ -16,10 +16,8 @@ public class EnemyHealth : Damageable
 
     private void Update()
     {
-        //checks if the enemy should be sinking
         if(isDead)
         {
-            // translates the enemy down
             transform.Translate(Vector3.down * m_sinkSpeed * Time.deltaTime);
         }
     }
@@ -28,6 +26,7 @@ public class EnemyHealth : Damageable
     {
         //Stop and fall through the floor
         col.enabled = false;
+        col.isTrigger = true;
         rb.velocity = new Vector3(0,0,0);
         // rb.useGravity = true;
         // rb.constraints = RigidbodyConstraints.None;

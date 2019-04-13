@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class PlayerHealth : Damageable
 {
+    //Control the health bar
     Image[] m_heartImages;
 
     void Awake()

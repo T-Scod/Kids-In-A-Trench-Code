@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class PlayerShooting : MonoBehaviour
 {
-    [SerializeField] Gun[] guns;
+    private Gun[] guns;
     Gun currentGun;
     private int gunIndex = 0;
 
@@ -14,7 +14,7 @@ public class PlayerShooting : MonoBehaviour
     void Start()
     {
         //Find all guns on object
-        // guns = GetComponentsInChildren<Gun>();
+        guns = GetComponentsInChildren<Gun>();
 
         //Own the guns!!!
         foreach (var g in guns)
