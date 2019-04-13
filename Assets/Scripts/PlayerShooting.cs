@@ -1,22 +1,29 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.Events;
 
 public class PlayerShooting : MonoBehaviour
 {
-    [Header("Guns")]
-    [SerializeField] List<Gun> guns;
+    [SerializeField] Gun[] guns;
     Gun currentGun;
     private int gunIndex = 0;
 
     [SerializeField] UnityEvent OnShoot;
     
-    float timer;
-
-    private void Update()
+    void Start()
     {
-        //Keep track of time for fire delay
-        timer += Time.deltaTime;
+        //Find all guns on object
+        // guns = GetComponentsInChildren<Gun>();
+
+        //Own the guns!!!
+        foreach (var g in guns)
+        {
+            g.SetOwner(this.gameObject);
+        }
+        
+        //Set start gun
+        currentGun = guns[0];
     }
 
     public void Shoot()
@@ -29,14 +36,15 @@ public class PlayerShooting : MonoBehaviour
     public void NextGun()
     {
         gunIndex++;
-        if (gunIndex > guns.Count-1) gunIndex = 0;    //Wrap around
+        if (gunIndex > guns.Length-1) gunIndex = 0;    //Wrap around
         currentGun = guns[gunIndex];
     }
 
     public void PrevGun()
     {
         gunIndex--;
-        if (gunIndex < 0) gunIndex = guns.Count-1;    //Wrap around
+        if (gunIndex < 0) gunIndex = guns.Length-1;    //Wrap around
         currentGun = guns[gunIndex];
     }
+
 }

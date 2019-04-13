@@ -19,8 +19,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4515862116450148}
-  - component: {fileID: 82873294820270012}
   - component: {fileID: 114203324702446606}
+  - component: {fileID: 82873294820270012}
   m_Layer: 0
   m_Name: HitSounds
   m_TagString: Untagged
@@ -38,13 +38,13 @@ GameObject:
   - component: {fileID: 4356315162268126}
   - component: {fileID: 33458361600050490}
   - component: {fileID: 23766119758277114}
+  - component: {fileID: 195700568493325772}
+  - component: {fileID: 54776223090922142}
   - component: {fileID: 136581666933333780}
+  - component: {fileID: 135096106965674678}
   - component: {fileID: 114203374326277004}
   - component: {fileID: 114343179239978580}
   - component: {fileID: 114259107885198646}
-  - component: {fileID: 135096106965674678}
-  - component: {fileID: 195700568493325772}
-  - component: {fileID: 54776223090922142}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -59,7 +59,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1507688798399138}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.9971876, y: -16.721897, z: 6.7688646}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4515862116450148}
@@ -73,7 +73,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1262884037951568}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.9971876, y: 16.721897, z: -6.7688646}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4356315162268126}
@@ -242,18 +242,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27d997b3dc2705444aaea744c9b0d968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 82873294820270012}
   sounds:
-  - {fileID: 8300000, guid: 1c58c7f7749b57040b9ca8ab09f7d514, type: 3}
-  - {fileID: 8300000, guid: 0935eca375df3de4288dfa6a30f20719, type: 3}
-  - {fileID: 8300000, guid: 2c7c1ba459fd5004bb96c0931c4bd203, type: 3}
-  - {fileID: 8300000, guid: 2adb857f469be6542b88433c6cb895b6, type: 3}
-  - {fileID: 8300000, guid: 8ec32e085dc500243a1df3680f164189, type: 3}
-  - {fileID: 8300000, guid: de73966338437904cbaadc3efaa1a5be, type: 3}
-  - {fileID: 8300000, guid: 59b9d05e64a9bc348a3ec089846f7fc9, type: 3}
-  - {fileID: 8300000, guid: be1373f63d582774fb0920b9f029aff5, type: 3}
-  - {fileID: 8300000, guid: ce44f5886b8417f4d867038263fa3eed, type: 3}
-  - {fileID: 8300000, guid: 624d89c15403bbc489b69f892553b9e3, type: 3}
+  - {fileID: 8300000, guid: b5e9bdd3eb0f347408eb081db5a31112, type: 3}
+  - {fileID: 8300000, guid: e13525498aa675945a5d235cea542c1e, type: 3}
+  - {fileID: 8300000, guid: 7637bf5f09d2cad44a2ba717ade9a033, type: 3}
+  - {fileID: 8300000, guid: bb8b708ed5cdf2e4bae4e17b435dbb01, type: 3}
+  - {fileID: 8300000, guid: 0dfc9a2c34dc57c4ca4f224cec90b2a7, type: 3}
 --- !u!114 &114203374326277004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -289,8 +283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9b9d14572410594cb85d40eedfb150c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 3
-  invulnerabiltyTime: 1
+  m_maxHP: 2
+  m_invulnerabiltyTime: 2
   anim: {fileID: 0}
   hitSounds: {fileID: 114203324702446606}
   OnDeath:
@@ -308,7 +302,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  OnBecomeInvulnerable:
+  OnBecomeVulnerable:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -318,8 +312,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  isInvulnerable: 0
-  m_sinkSpeed: 2.5
+  m_sinkSpeed: 5
   m_scoreValue: 10
 --- !u!135 &135096106965674678
 SphereCollider:

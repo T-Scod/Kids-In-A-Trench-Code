@@ -11,6 +11,23 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1673101627250148}
   m_IsPrefabAsset: 1
+--- !u!1 &1361054039334922
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4037898775810360}
+  - component: {fileID: 82812625211014026}
+  - component: {fileID: 114204471306463684}
+  m_Layer: 0
+  m_Name: LargeImpactSounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1673101627250148
 GameObject:
   m_ObjectHideFlags: 0
@@ -25,38 +42,21 @@ GameObject:
   - component: {fileID: 54046850085584888}
   - component: {fileID: 114500022847852186}
   m_Layer: 0
-  m_Name: BulletSmall
+  m_Name: SpiritBomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1896637574039604
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4275134015280036}
-  - component: {fileID: 82334245095841302}
-  - component: {fileID: 114567489900067436}
-  m_Layer: 0
-  m_Name: BulletImpactSounds
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4275134015280036
+--- !u!4 &4037898775810360
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1896637574039604}
+  m_GameObject: {fileID: 1361054039334922}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.333333, y: 3.333333, z: 3.333333}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4506502397532892}
   m_RootOrder: 0
@@ -69,9 +69,9 @@ Transform:
   m_GameObject: {fileID: 1673101627250148}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
-  - {fileID: 4275134015280036}
+  - {fileID: 4037898775810360}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -90,7 +90,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: f17ab7927b7fe7449934cffce19370e1, type: 2}
+  - {fileID: 2100000, guid: 6cba339d0bb4843bb9332966eb4a5ed4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -132,12 +132,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!82 &82334245095841302
+--- !u!82 &82812625211014026
 AudioSource:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1896637574039604}
+  m_GameObject: {fileID: 1361054039334922}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -227,6 +227,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &114204471306463684
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1361054039334922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d997b3dc2705444aaea744c9b0d968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - {fileID: 8300000, guid: db3d455f853b21a43b5c7803d15a5517, type: 3}
+  - {fileID: 8300000, guid: f65d3235d8c2af047a3a20b6e1240bac, type: 3}
+  - {fileID: 8300000, guid: 7020f67507d2c0c48b4e7a2449bfad82, type: 3}
 --- !u!114 &114500022847852186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -238,35 +253,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c7d6cf5a9bd2473e9e63303b5fcf1c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
-  destroyOnContact: 1
-  mass: 0.5
+  damage: 3
+  destroyOnContact: 0
+  mass: 3
   affectedByGravity: 0
-  impactSounds: {fileID: 114567489900067436}
+  impactSounds: {fileID: 114204471306463684}
   particles: {fileID: 0}
---- !u!114 &114567489900067436
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1896637574039604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27d997b3dc2705444aaea744c9b0d968, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audio: {fileID: 82334245095841302}
-  sounds:
-  - {fileID: 8300000, guid: 168dc94aa7e5db44b8e0eca7eeee5cdb, type: 3}
-  - {fileID: 8300000, guid: e7cb68da88d8b274eb008f9a214589d8, type: 3}
-  - {fileID: 8300000, guid: 48e8c1d365e3fea4a8c53774c6f96a2e, type: 3}
-  - {fileID: 8300000, guid: a6b9fe185a1239346a0cfd37c93aeee9, type: 3}
-  - {fileID: 8300000, guid: 3495ff9f530360a41b88bdefc93415af, type: 3}
-  - {fileID: 8300000, guid: 5d047e2b1d4a55b41ba55bbfc2000f46, type: 3}
-  - {fileID: 8300000, guid: ee15d44f52076de429349edc81c43fa1, type: 3}
-  - {fileID: 8300000, guid: e00496b5f7ee32e4cb3022c957d104a9, type: 3}
-  - {fileID: 8300000, guid: c66dd77d6b3c50c48bb98ba65e94cd0f, type: 3}
-  - {fileID: 8300000, guid: d53b54be91bd92142a3ca39fe1b7eca4, type: 3}
 --- !u!135 &135201534455910644
 SphereCollider:
   m_ObjectHideFlags: 1

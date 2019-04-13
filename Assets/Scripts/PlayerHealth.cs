@@ -23,5 +23,11 @@ public class PlayerHealth : Damageable
             }
         }
     }
+
+    // public override void Death()
+    // {
+    //     //Fall over
+
+    // }
  
 }

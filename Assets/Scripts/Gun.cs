@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour {
 
+    public enum FireMode
+    {
+        Single,
+        Burst,
+        Auto
+    }
+
 	[Header("Settings")]
-    [SerializeField] bool autoFire = false;
+    [SerializeField] FireMode fireMode = FireMode.Auto;
 	[SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform muzzle;
-    [SerializeField] float launchForce = 500;
+    [SerializeField] float launchForce = 750;
     [SerializeField] ForceMode launchForceMode = ForceMode.Force;
-    [SerializeField] float timeBetweenShots = 0.15f;
+    [SerializeField] float timeBetweenShots = 0.3f;
     [SerializeField] float bulletLifetime = 3f;
 
 	[Header("Audio")]
 	[SerializeField] RandomAudioPlayer gunSounds;
-
 
     [Header("Particles")]
     [SerializeField] ParticleSystem particles;
@@ -24,29 +30,22 @@ public class Gun : MonoBehaviour {
 	GameObject owner;
 	float timeSinceLastFired;
 
-    void Update()
-    {
-        timeSinceLastFired += Time.deltaTime;
-    }
-
 	public void SetOwner(GameObject parent)	//It is the PlayerShooter's responsibility to own this gun
 	{
 		this.owner = parent;
 	}
 
-
-
     public void Fire()
     {
-        // Debug.Log("Gun firing bullet");
         //Regulate shots
-        if (!autoFire) {
-            if (timeSinceLastFired < timeBetweenShots)
-                return;
+        if (Time.time-timeSinceLastFired < timeBetweenShots)
+        {
+            //Can shoot
+            return;
         }
 
         // resets the timer
-        timeSinceLastFired = 0f;
+        timeSinceLastFired = Time.time;
 
         PlayGunSound();
 
@@ -71,6 +70,7 @@ public class Gun : MonoBehaviour {
         //Play gun sound
         if (gunSounds != null)
         {
+            Debug.Log("Player gun sound");
             gunSounds.PlayOnce();
         }
     }

@@ -4,31 +4,26 @@ using System.Collections;
 public class EnemyMovement : MonoBehaviour
 {
     // what the enemy is going to move towards
-    private Transform m_player;
-    // the health of the player
-    private PlayerHealth m_playerHealth;
+    private PlayerHealth player;
     // the health of the enemy
-    private EnemyHealth m_enemyHealth;
+    private EnemyHealth enemy;
     // reference to the nav mesh agent of the enemy
     private UnityEngine.AI.NavMeshAgent m_nav;
 
-    private void Awake()
+    private void Start()
     {
-        // finds a player object and sets the transform
-        m_player = GameObject.FindGameObjectWithTag("Player").transform;
-        // gets the components from the object
-        m_playerHealth = m_player.GetComponent<PlayerHealth>();
-        m_enemyHealth = GetComponent<EnemyHealth>();
+        player = FindObjectOfType<PlayerHealth>();
+        enemy = GetComponent<EnemyHealth>();
         m_nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
 
     private void Update()
     {
         // checks if both the enemy and the player are alive
-        if (m_enemyHealth.currentHP > 0 && m_playerHealth.currentHP > 0)
+        if (!enemy.isDead && !player.isDead)
         {
-            // moves the object towards the player
-            m_nav.SetDestination(m_player.position);
+            // pathfinds the object towards the player
+            m_nav.SetDestination(player.transform.position);
             m_nav.speed += Time.deltaTime;
         }
         else
