@@ -9,14 +9,14 @@ public class SmoothCamera : MonoBehaviour
 	[SerializeField] bool lookAtPlayer = false;
 	[SerializeField] float orientTime = 2f;
 
-	GameObject player;
+	PlayerHealth player;
 	bool playerFound = false;
 
 	void Update()
 	{
 		if (!playerFound) {
 			//Search for player until something is found
-			player = FindObjectOfType<PlayerHealth>().gameObject;	//Player will always have a PlayerHealth component
+			player = FindObjectOfType<PlayerHealth>();	//Player will always have a PlayerHealth component
 			if (player != null)
 			{
 				playerFound = true;	//Player has been found, stop searching and start tracking
@@ -28,6 +28,13 @@ public class SmoothCamera : MonoBehaviour
             {
                 LookAtPlayer();
             }
+
+			//Cinematice zoom in upon player death
+			if (player.isDead)
+			{
+				offset.y = 10; offset.z = 0; lerp = 0.04f;
+				lookAtPlayer = true;
+			}
         }
 	}
     void LateUpdate()

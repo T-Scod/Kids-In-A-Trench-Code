@@ -20,7 +20,9 @@ public class ScoreManager : MonoBehaviour
 
     private void Update()
     {
-        // sets the score text to the score
-        m_text.text = "Score: " + score;
+        string scoreText = score.ToString();
+        //Pad with extra zeros
+        scoreText = scoreText.PadLeft(5, '0');
+        m_text.text = "Score " + scoreText;
     }
 }

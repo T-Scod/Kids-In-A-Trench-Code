@@ -930,13 +930,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd75a74e3c7bc8842ad97390011fa3bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireMode: 2
   bulletPrefab: {fileID: 1673101627250148, guid: a6c2322bf34d3a4438483231f015019d,
     type: 2}
   muzzle: {fileID: 4602377566323758}
   launchForce: 1000
   launchForceMode: 0
-  timeBetweenShots: 0.05
+  timeBetweenShots: 0.08
   bulletLifetime: 2
   gunSounds: {fileID: 114544845891776158}
   particles: {fileID: 0}
@@ -958,17 +957,6 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114488284476597884}
-        m_MethodName: UpdatePlayerHealthBar
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 114954332031327298}
         m_MethodName: set_enabled
         m_Mode: 6
@@ -978,7 +966,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 114511886845390498}
         m_MethodName: set_enabled
@@ -986,6 +974,28 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114488284476597884}
+        m_MethodName: UpdatePlayerHealthBar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1057,10 +1067,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27c63be2a8918c741863160b9d9da122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guns:
-  - {fileID: 114205319567928526}
-  - {fileID: 114600876279725642}
-  - {fileID: 114708729497236936}
   OnShoot:
     m_PersistentCalls:
       m_Calls: []
@@ -1091,13 +1097,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd75a74e3c7bc8842ad97390011fa3bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireMode: 2
   bulletPrefab: {fileID: 1673101627250148, guid: 08d91844367c6470c8887c18bf5aefb9,
     type: 2}
   muzzle: {fileID: 4422861232190826}
   launchForce: 1000
   launchForceMode: 0
-  timeBetweenShots: 1
+  timeBetweenShots: 0.3
   bulletLifetime: 3
   gunSounds: {fileID: 114664487069301070}
   particles: {fileID: 0}
@@ -1129,7 +1134,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd75a74e3c7bc8842ad97390011fa3bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireMode: 2
   bulletPrefab: {fileID: 1673101627250148, guid: 2b7b32fdc6b6a21449ff322b68a89b4a,
     type: 2}
   muzzle: {fileID: 4206194169329680}
@@ -1163,7 +1167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96e95605909616947842e18ee20abfd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 5
   movement: {x: 0, y: 0, z: 0}
 --- !u!136 &136285671080225418
 CapsuleCollider:

@@ -32,7 +32,6 @@ public abstract class Damageable : MonoBehaviour
 
     void Update()
     {
-        //Turns of invulnerable
         if (isInvulnerable)
         {
             m_timeSinceLastHit += Time.deltaTime;
@@ -47,7 +46,7 @@ public abstract class Damageable : MonoBehaviour
 
     public virtual void ResetDamage()
     {
-        currentHP = m_maxHP;
+        currentHP = maxHP;
         isInvulnerable = false;
         m_timeSinceLastHit = 0f;
         OnResetDamage.Invoke();
@@ -65,20 +64,28 @@ public abstract class Damageable : MonoBehaviour
         }
 
         //Finally take damage
-        isInvulnerable = true;
         currentHP -= damageAmount;
 
         if (currentHP <= 0)
         {
-            Death();
             OnDeath.Invoke();
+            Death();
         }
         else
         {
-            Hit();
             OnReceiveDamage.Invoke();
+            Hit();
         }
     }
+
+    //------- Accessible via unity events ------/
+    private void PlayRandomHitSound() 
+    {
+        if (hitSounds != null)
+            hitSounds.PlayOnce();
+    }
+
+    //Virtual methods that do nothing but can be overriden and implementd by the children
     public virtual void Hit() 
     {
         PlayRandomHitSound();
@@ -86,11 +93,5 @@ public abstract class Damageable : MonoBehaviour
         if (anim != null)
             anim.SetTrigger("TakeDamage");
     }
-    private void PlayRandomHitSound() 
-    {
-        if (hitSounds != null)
-            hitSounds.PlayOnce();
-    }
-    
     public virtual void Death() {}
 }

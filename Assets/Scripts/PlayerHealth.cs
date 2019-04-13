@@ -25,10 +25,12 @@ public class PlayerHealth : Damageable
         }
     }
 
-    // public override void Death()
-    // {
-    //     //Fall over
-
-    // }
- 
+    public override void Death()
+    {
+        //Fall over
+        var rb = GetComponent<Rigidbody>();
+        var nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        rb.constraints = RigidbodyConstraints.None;
+        nav.enabled = false;
+    }   
 }

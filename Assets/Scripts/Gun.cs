@@ -12,7 +12,7 @@ public class Gun : MonoBehaviour {
     }
 
 	[Header("Settings")]
-    [SerializeField] FireMode fireMode = FireMode.Auto;
+    // [SerializeField] FireMode fireMode = FireMode.Auto;
 	[SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform muzzle;
     [SerializeField] float launchForce = 750;
@@ -70,7 +70,7 @@ public class Gun : MonoBehaviour {
         //Play gun sound
         if (gunSounds != null)
         {
-            Debug.Log("Player gun sound");
+            // Debug.Log("Player gun sound");
             gunSounds.PlayOnce();
         }
     }

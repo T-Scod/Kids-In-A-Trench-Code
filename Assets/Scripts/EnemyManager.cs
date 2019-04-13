@@ -6,39 +6,40 @@ public class EnemyManager : MonoBehaviour
     // reference to the enemy
     public GameObject m_enemy;
     // the wait time between spawning
-    public float m_spawnTime = 3.0f;
-    public int enemyCount = 10;
+    public float spawnDelay = 3.0f;
+    public int maxEnemiesPerSpawner = 10;
     public List<GameObject> m_enemies = new List<GameObject>();
 
     // reference to the player's health
-    private PlayerHealth m_playerHealth;
+    private PlayerHealth player;
 
     private void Start()
     {
-        m_playerHealth = FindObjectOfType<PlayerHealth>();
+        player = FindObjectOfType<PlayerHealth>();
         // repeats the spawn function with a wait time
-        InvokeRepeating("Spawn", m_spawnTime, m_spawnTime);
+        InvokeRepeating("Spawn", spawnDelay, spawnDelay);
     }
 
     // spawns an enemy
     private void Spawn()
     {
         // checks if the player does not have any health
-        if(m_playerHealth.currentHP <= 0.0f)
+        if(player.isDead)
         {
             // exits the function
             return;
         }
 
-        if (m_enemies.Count <= enemyCount)
+        if (m_enemies.Count < maxEnemiesPerSpawner)
         {
             // creates a game object of the enemy type at the spawn point
             m_enemies.Add(Instantiate(m_enemy, transform.position, transform.rotation) as GameObject);
+            m_enemies[m_enemies.Count-1].GetComponent<EnemyHealth>().manager = this;
         }
     }
 
-    public void IncEnemies()
+    public void RemoveFromManager(GameObject enemyToBeRemoved)
     {
-        enemyCount++;
+        m_enemies.Remove(enemyToBeRemoved);
     }
 }

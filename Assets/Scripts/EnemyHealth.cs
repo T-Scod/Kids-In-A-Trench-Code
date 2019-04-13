@@ -8,6 +8,8 @@ public class EnemyHealth : Damageable
     CapsuleCollider col;
     Rigidbody rb;
 
+    public EnemyManager manager { get; set; }   //Responsibility of manager to set this
+
     private void Awake()
     {
         col = GetComponent<CapsuleCollider>();
@@ -35,7 +37,8 @@ public class EnemyHealth : Damageable
         ScoreManager.score += m_scoreValue;
 
         GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
-        GetComponentInParent<EnemyManager>().IncEnemies();
+        
+        manager.RemoveFromManager(gameObject);
 
         //Clean up
         Destroy(gameObject, 1.5f);
